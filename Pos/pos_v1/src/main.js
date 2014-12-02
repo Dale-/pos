@@ -1,5 +1,6 @@
 //TODO: Please write code in this file.
 function printInventory(inputs){
+  
   var save = 0;
   var myArray = [];
   var expectText = '***<没钱赚商店>购物清单***\n';
