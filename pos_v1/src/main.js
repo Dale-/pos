@@ -44,14 +44,16 @@ function findCartEntry(cartEntries, barcode) {
 
 function addProperty(cartEntries){
 
+  var allItems = loadAllItems();
+
   for(var i = 0; i < cartEntries.length; i++){
 
-    for(var j = 0; j < loadAllItems().length; j++){
+    for(var j = 0; j < allItems.length; j++){
 
-      if(cartEntries[i].barcode === loadAllItems()[j].barcode){
-        cartEntries[i].price = loadAllItems()[j].price;
-        cartEntries[i].name = loadAllItems()[j].name;
-        cartEntries[i].unit = loadAllItems()[j].unit;
+      if(cartEntries[i].barcode === allItems[j].barcode){
+        cartEntries[i].price = allItems[j].price;
+        cartEntries[i].name = allItems[j].name;
+        cartEntries[i].unit = allItems[j].unit;
         break;
       }
     }
