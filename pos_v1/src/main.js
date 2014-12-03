@@ -1,13 +1,11 @@
-//TODO: Please write code in this file.
 function printInventory(inputs){
   var numInfo = infoNum(inputs);
   var myArray = addProperty(numInfo);
   setString(myArray);
 }
 
-// 将商品的barcode、num信息汇总
 function infoNum(inputs){
-  var myArray = [];                                  // 我的数据库数组（存放对象）
+  var myArray = [];
   for(var i = 0; i < inputs.length; i++){
     var b = true;
     if(inputs[i].split("-").length > 1){
@@ -28,7 +26,6 @@ function infoNum(inputs){
   return myArray;
 }
 
-// 给myArray加入price、name、unit属性
 function addProperty(myArray){
   for(var i = 0; i < myArray.length; i++){
     for(var j = 0; j < loadAllItems().length; j++){
@@ -43,12 +40,11 @@ function addProperty(myArray){
   return myArray;
 }
 
-// 计算小计并向expectText中添加字符串
 function setString(myArray){
-  var save = 0;                                      // 节省钱数
-  var expectText = '***<没钱赚商店>购物清单***\n';      // 打印输出字符串
-  var freeInfo = '';                                 // 赠送商品信息
-  var allSum = 0;                                    // 总计钱数
+  var save = 0;
+  var expectText = '***<没钱赚商店>购物清单***\n';
+  var freeInfo = '';
+  var allSum = 0;
 
   for(var i = 0; i < myArray.length; i++){
     var b = true;
