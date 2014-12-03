@@ -1,107 +1,107 @@
 function printInventory(tags){
-  var carItems = getCarItems(tags);
-  var inventoryText = getInventoryText(carItems);
-  console.log(inventoryText);
+  var cartItems = getCartItems(tags);
+  var InventoryText = getInventoryText(cartItems);
+  console.log(InventoryText);
 }
 
-function getCarItems(tags){
-  var carItems = [];
+function getCartItems(tags){
+  var cartItems = [];
 
   for(var i = 0; i < tags.length; i++){
-
     var splitedArray = tags[i].split('-');
-    var barcode = splitedArray[0];
-    var count = 1;
+    barcode = splitedArray[0];
+    count = 1;
     if(splitedArray[1]){
       count = parseFloat(splitedArray[1]);
     }
 
-    var carItem = findCarItems(barcode,carItems);
-    if(carItem){
-      carItem.count += count;
+    cartItem = findCartItems(barcode, cartItems);
+    if(cartItem){
+      cartItem.count += count;
     }else{
-      var item = findLoadAllItems(barcode, loadAllItems());
-      carItems.push({ item: item , count: count });
+      var newItem = findAllItems(barcode, loadAllItems());
+      cartItems.push({ item: newItem , count: count});
     }
   }
-
-  return carItems;
+  return cartItems;
 }
 
-function findCarItems(barcode,carItems){
-  var item;
-  for(var i = 0; i < carItems.length; i++){
-    if(barcode === carItems[i].item.barcode){
-      item = carItems[i];
+function findCartItems(barcode, cartItems){
+  var cartItem;
+  for(var i = 0; i < cartItems.length; i++){
+    if(barcode === cartItems[i].item.barcode){
+      cartItem = cartItems[i];
     }
   }
-  return item;
+  return cartItem;
 }
 
-function findLoadAllItems(barcode, loadAllItems){
-  var carItem;
-  for(var i = 0; i < loadAllItems.length; i++){
-    if(barcode === loadAllItems[i].barcode){
-      carItem = loadAllItems[i];
-    }
+function findAllItems(barcode, allItems){
+  var cartItem;
+  for(var i = 0; i < allItems.length; i++){
+    if(barcode == allItems[i].barcode){
+      cartItem = allItems[i]
+    } ;
   }
-  return carItem;
+  return cartItem;
 }
 
-function getInventoryText(carItems){
-  var text = '***<没钱赚商店>购物清单***\n';
+function getInventoryText(cartItems){
   var inventoryText = '';
-  var promotionText = '挥泪赠送商品：\n';
-  var summaryText='';
+  var promotionText = '';
+  var summaryText = '';
   var saveMoney = 0;
-  var summaryMoney = 0;
+  var totalMoney = 0;
 
-  for(var i = 0; i < carItems.length; i++){
+  inventoryText = '***<没钱赚商店>购物清单***\n';
 
-    var barcode = carItems[i].item.barcode;
-    var num = carItems[i].count;
-    var item = carItems[i].item;
+  for(var i = 0; i < cartItems.length; i++){
 
-    if(isPromotion(barcode, loadPromotions())){
-      promotionText += '名称：' + item.name + '，数量：' +
-                     Math.floor(num / 3) + item.unit + '\n';
-      saveMoney += Math.floor(num / 3) * item.price;
-      num = num - Math.floor(num / 3);
+    var num = cartItems[i].count;
+    var cartItem = cartItems[i].item;
+
+    if(isPromotion(cartItems[i].item.barcode, loadPromotions())){
+      promotionNum = Math.floor(num / 3);
+      promotionText += '名称：' + cartItem.name + '，数量：' +
+                       promotionNum + cartItem.unit +'\n';
+      saveMoney += promotionNum * cartItem.price;
+      num = num - promotionNum;
     }
 
-    inventoryText += '名称：' + item.name + '，数量：' + carItems[i].count +
-                     item.unit + '，单价：' + item.price.toFixed(2) +
-                     '(元)，小计：' + (num * item.price).toFixed(2) + '(元)\n';
+    inventoryText += '名称：' + cartItem.name + '，数量：' +
+                     cartItems[i].count + cartItem.unit + '，单价：' +
+                     (cartItem.price).toFixed(2) + '(元)，小计：' +
+                     (num * cartItem.price).toFixed(2) + '(元)\n';
 
-    summaryMoney += num * item.price;
+    totalMoney += num * cartItem.price;
+    }
+
+    summaryText = '总计：' + totalMoney.toFixed(2) + '(元)\n' +
+                  '节省：' + saveMoney.toFixed(2) + '(元)\n';
+
+    inventoryText = connectString(inventoryText, promotionText, summaryText);
+    
+    return inventoryText;
   }
 
-  summaryText += '总计：' + summaryMoney.toFixed(2) + '(元)\n' +
-                 '节省：' + saveMoney.toFixed(2) + '(元)\n';
+  function connectString(inventoryText, promotionText, summaryText){
+    inventoryText = inventoryText + '----------------------\n' +
+                    '挥泪赠送商品：\n' + promotionText +
+                    '----------------------\n' + summaryText +
+                    '**********************';
+    return inventoryText;
+  }
 
-
-  text = join(inventoryText, promotionText, summaryText, text);
-
-  return text;
-}
-
-function join(inventoryText, promotionText, summaryText, text){
-  text += inventoryText + '----------------------\n' +
-          promotionText + '----------------------\n' +
-          summaryText + '**********************';
-  return text;
-}
-
-function isPromotion(barcode, Promotions){
-  var isPromoted = false;
-  for(var i = 0; i < Promotions.length; i++){
-    if(Promotions[i].type === 'BUY_TWO_GET_ONE_FREE'){
-      for(var j = 0; j < Promotions[i].barcodes.length; j++){
-        if(barcode === Promotions[i].barcodes[j]){
-          isPromoted = true;
+function isPromotion(barcode, loadPromotions){
+  var isPromotion = false;
+  for(var i = 0; i < loadPromotions.length; i++){
+    if(loadPromotions[i].type === 'BUY_TWO_GET_ONE_FREE'){
+      for(var j = 0; j < loadPromotions[i].barcodes.length; j++){
+        if(barcode == loadPromotions[i].barcodes[j]){
+          isPromotion = true;
         }
       }
     }
   }
-  return isPromoted;
+  return isPromotion;
 }
