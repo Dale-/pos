@@ -42,22 +42,22 @@ function findCartEntry(cartEntries, barcode) {
   return cartEntry;
 }
 
-function addProperty(myArray){
+function addProperty(cartEntries){
 
-  for(var i = 0; i < myArray.length; i++){
+  for(var i = 0; i < cartEntries.length; i++){
 
     for(var j = 0; j < loadAllItems().length; j++){
 
-      if(myArray[i].barcode === loadAllItems()[j].barcode){
-        myArray[i].price = loadAllItems()[j].price;
-        myArray[i].name = loadAllItems()[j].name;
-        myArray[i].unit = loadAllItems()[j].unit;
+      if(cartEntries[i].barcode === loadAllItems()[j].barcode){
+        cartEntries[i].price = loadAllItems()[j].price;
+        cartEntries[i].name = loadAllItems()[j].name;
+        cartEntries[i].unit = loadAllItems()[j].unit;
         break;
       }
     }
   }
 
-  return myArray;
+  return cartEntries;
 }
 
 function setString(myArray){
