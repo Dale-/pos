@@ -83,23 +83,25 @@ function getInventoryText(cartEntries){
 
     var b = true;
 
+    var cartEntry = cartEntries[i];
+
     for(var j = 0; j < loadPromotions()[0].barcodes.length; j++){
-      if(cartEntries[i].barcode === loadPromotions()[0].barcodes[j]){
+      if(cartEntry.barcode === loadPromotions()[0].barcodes[j]){
         b = false;
-        cartEntries[i].sum = cartEntries[i].price * cartEntries[i].num - (Math.floor((cartEntries[i].num)/3)) * cartEntries[i].price;
-        save += (Math.floor((cartEntries[i].num)/3)) * cartEntries[i].price;
-        freeInfo += '名称：'+ cartEntries[i].name +'，数量：'+ Math.floor((cartEntries[i].num)/3) + cartEntries[i].unit + '\n';
+        cartEntry.sum = cartEntry.price * cartEntry.num - (Math.floor((cartEntry.num)/3)) * cartEntry.price;
+        save += (Math.floor((cartEntry.num)/3)) * cartEntry.price;
+        freeInfo += '名称：'+ cartEntry.name +'，数量：'+ Math.floor((cartEntry.num)/3) + cartEntry.unit + '\n';
         break;
       }
     }
 
     if(b){
-      cartEntries[i].sum = cartEntries[i].price * cartEntries[i].num;
+      cartEntry.sum = cartEntry.price * cartEntry.num;
     }
 
-    expectText += '名称：' + cartEntries[i].name + '，' + '数量：'+ cartEntries[i].num + cartEntries[i].unit + '，单价：' + cartEntries[i].price.toFixed(2) +'(元)，小计：' + cartEntries[i].sum.toFixed(2) +'(元)\n';
+    expectText += '名称：' + cartEntry.name + '，' + '数量：'+ cartEntry.num + cartEntry.unit + '，单价：' + cartEntry.price.toFixed(2) +'(元)，小计：' + cartEntry.sum.toFixed(2) +'(元)\n';
 
-    allSum += cartEntries[i].sum;
+    allSum += cartEntry.sum;
   }
 
   expectText += '----------------------\n' + '挥泪赠送商品：\n' + freeInfo + '----------------------\n' + '总计：'+ allSum.toFixed(2) +'(元)\n' + '节省：'+ save.toFixed(2) +'(元)\n' + '**********************';
