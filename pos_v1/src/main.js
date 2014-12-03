@@ -1,7 +1,8 @@
 function printInventory(inputs){
   var cartEntries = getCartEntries(inputs);
   addProperty(cartEntries);
-  setString(cartEntries);
+  var text = getInventoryText(cartEntries);
+  console.log(text);
 }
 
 function getCartEntries(inputs){
@@ -72,7 +73,7 @@ function findItem(items, barcode) {
   return item;
 }
 
-function setString(myArray){
+function getInventoryText(myArray){
   var save = 0;
   var expectText = '***<没钱赚商店>购物清单***\n';
   var freeInfo = '';
@@ -103,5 +104,5 @@ function setString(myArray){
 
   expectText += '----------------------\n' + '挥泪赠送商品：\n' + freeInfo + '----------------------\n' + '总计：'+ allSum.toFixed(2) +'(元)\n' + '节省：'+ save.toFixed(2) +'(元)\n' + '**********************';
 
-  console.log(expectText);
+  return expectText;
 }
