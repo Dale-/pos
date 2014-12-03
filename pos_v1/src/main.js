@@ -73,33 +73,33 @@ function findItem(items, barcode) {
   return item;
 }
 
-function getInventoryText(myArray){
+function getInventoryText(cartEntries){
   var save = 0;
   var expectText = '***<没钱赚商店>购物清单***\n';
   var freeInfo = '';
   var allSum = 0;
 
-  for(var i = 0; i < myArray.length; i++){
+  for(var i = 0; i < cartEntries.length; i++){
 
     var b = true;
 
     for(var j = 0; j < loadPromotions()[0].barcodes.length; j++){
-      if(myArray[i].barcode === loadPromotions()[0].barcodes[j]){
+      if(cartEntries[i].barcode === loadPromotions()[0].barcodes[j]){
         b = false;
-        myArray[i].sum = myArray[i].price * myArray[i].num - (Math.floor((myArray[i].num)/3)) * myArray[i].price;
-        save += (Math.floor((myArray[i].num)/3)) * myArray[i].price;
-        freeInfo += '名称：'+ myArray[i].name +'，数量：'+ Math.floor((myArray[i].num)/3) + myArray[i].unit + '\n';
+        cartEntries[i].sum = cartEntries[i].price * cartEntries[i].num - (Math.floor((cartEntries[i].num)/3)) * cartEntries[i].price;
+        save += (Math.floor((cartEntries[i].num)/3)) * cartEntries[i].price;
+        freeInfo += '名称：'+ cartEntries[i].name +'，数量：'+ Math.floor((cartEntries[i].num)/3) + cartEntries[i].unit + '\n';
         break;
       }
     }
 
     if(b){
-      myArray[i].sum = myArray[i].price * myArray[i].num;
+      cartEntries[i].sum = cartEntries[i].price * cartEntries[i].num;
     }
 
-    expectText += '名称：' + myArray[i].name + '，' + '数量：'+ myArray[i].num + myArray[i].unit + '，单价：' + myArray[i].price.toFixed(2) +'(元)，小计：' + myArray[i].sum.toFixed(2) +'(元)\n';
+    expectText += '名称：' + cartEntries[i].name + '，' + '数量：'+ cartEntries[i].num + cartEntries[i].unit + '，单价：' + cartEntries[i].price.toFixed(2) +'(元)，小计：' + cartEntries[i].sum.toFixed(2) +'(元)\n';
 
-    allSum += myArray[i].sum;
+    allSum += cartEntries[i].sum;
   }
 
   expectText += '----------------------\n' + '挥泪赠送商品：\n' + freeInfo + '----------------------\n' + '总计：'+ allSum.toFixed(2) +'(元)\n' + '节省：'+ save.toFixed(2) +'(元)\n' + '**********************';
