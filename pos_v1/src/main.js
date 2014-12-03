@@ -1,8 +1,8 @@
 function printInventory(inputs){
   var cartEntries = getCartEntries(inputs);
   addProperty(cartEntries);
-  var text = getInventoryText(cartEntries);
-  console.log(text);
+  var inventoryText= getInventoryText(cartEntries);
+  console.log(inventoryText);
 }
 
 function getCartEntries(inputs){
@@ -74,10 +74,10 @@ function findItem(items, barcode) {
 }
 
 function getInventoryText(cartEntries){
-  var save = 0;
-  var expectText = '***<没钱赚商店>购物清单***\n';
-  var freeInfo = '';
-  var allSum = 0;
+  var saveMoney = 0;
+  var inventoryText= '***<没钱赚商店>购物清单***\n';
+  var promotionText = '';
+  var totalAmount = 0;
 
   for(var i = 0; i < cartEntries.length; i++){
 
@@ -89,8 +89,8 @@ function getInventoryText(cartEntries){
       if(cartEntry.barcode === loadPromotions()[0].barcodes[j]){
         b = false;
         cartEntry.sum = cartEntry.price * cartEntry.num - (Math.floor((cartEntry.num)/3)) * cartEntry.price;
-        save += (Math.floor((cartEntry.num)/3)) * cartEntry.price;
-        freeInfo += '名称：'+ cartEntry.name +'，数量：'+ Math.floor((cartEntry.num)/3) + cartEntry.unit + '\n';
+        saveMoney += (Math.floor((cartEntry.num)/3)) * cartEntry.price;
+        promotionText += '名称：'+ cartEntry.name +'，数量：'+ Math.floor((cartEntry.num)/3) + cartEntry.unit + '\n';
         break;
       }
     }
@@ -99,12 +99,12 @@ function getInventoryText(cartEntries){
       cartEntry.sum = cartEntry.price * cartEntry.num;
     }
 
-    expectText += '名称：' + cartEntry.name + '，' + '数量：'+ cartEntry.num + cartEntry.unit + '，单价：' + cartEntry.price.toFixed(2) +'(元)，小计：' + cartEntry.sum.toFixed(2) +'(元)\n';
+    inventoryText+= '名称：' + cartEntry.name + '，' + '数量：'+ cartEntry.num + cartEntry.unit + '，单价：' + cartEntry.price.toFixed(2) +'(元)，小计：' + cartEntry.sum.toFixed(2) +'(元)\n';
 
-    allSum += cartEntry.sum;
+    totalAmount += cartEntry.sum;
   }
 
-  expectText += '----------------------\n' + '挥泪赠送商品：\n' + freeInfo + '----------------------\n' + '总计：'+ allSum.toFixed(2) +'(元)\n' + '节省：'+ save.toFixed(2) +'(元)\n' + '**********************';
+  inventoryText += '----------------------\n' + '挥泪赠送商品：\n' + promotionText + '----------------------\n' + '总计：'+ totalAmount.toFixed(2) +'(元)\n' + '节省：'+ saveMoney.toFixed(2) +'(元)\n' + '**********************';
 
-  return expectText;
+  return inventoryText;
 }
