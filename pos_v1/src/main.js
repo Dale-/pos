@@ -92,7 +92,8 @@ function getInventoryText(cartEntries){
         b = false;
         cartEntry.sum = cartEntry.price * cartEntry.num - promotionCount * cartEntry.price;
         saveMoney += promotionCount * cartEntry.price;
-        promotionText += '名称：'+ cartEntry.name +'，数量：'+ promotionCount + cartEntry.unit + '\n';
+        promotionText += '名称：'+ cartEntry.name +
+                         '，数量：'+ promotionCount + cartEntry.unit + '\n';
         break;
       }
     }
@@ -101,12 +102,20 @@ function getInventoryText(cartEntries){
       cartEntry.sum = cartEntry.price * cartEntry.num;
     }
 
-    inventoryText += '名称：' + cartEntry.name + '，' + '数量：'+ cartEntry.num + cartEntry.unit + '，单价：' + cartEntry.price.toFixed(2) +'(元)，小计：' + cartEntry.sum.toFixed(2) +'(元)\n';
+    inventoryText += '名称：' + cartEntry.name + '，' +
+                     '数量：'+ cartEntry.num + cartEntry.unit +
+                     '，单价：' + cartEntry.price.toFixed(2) +
+                     '(元)，小计：' + cartEntry.sum.toFixed(2) +'(元)\n';
 
     totalAmount += cartEntry.sum;
   }
 
-  inventoryText += '----------------------\n' + '挥泪赠送商品：\n' + promotionText + '----------------------\n' + '总计：'+ totalAmount.toFixed(2) +'(元)\n' + '节省：'+ saveMoney.toFixed(2) +'(元)\n' + '**********************';
+  inventoryText += '----------------------\n' +
+                   '挥泪赠送商品：\n' + promotionText +
+                   '----------------------\n' +
+                   '总计：'+ totalAmount.toFixed(2) +'(元)\n' +
+                   '节省：'+ saveMoney.toFixed(2) +'(元)\n' +
+                   '**********************';
 
   return inventoryText;
 }
