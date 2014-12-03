@@ -1,7 +1,7 @@
 function printInventory(inputs){
   var cartEntries = getCartEntries(inputs);
-  var myArray = addProperty(cartEntries);
-  setString(myArray);
+  addProperty(cartEntries);
+  setString(cartEntries);
 }
 
 function getCartEntries(inputs){
@@ -48,18 +48,28 @@ function addProperty(cartEntries){
 
   for(var i = 0; i < cartEntries.length; i++){
 
-    for(var j = 0; j < allItems.length; j++){
+    var cartEntry = cartEntries[i];
 
-      if(cartEntries[i].barcode === allItems[j].barcode){
-        cartEntries[i].price = allItems[j].price;
-        cartEntries[i].name = allItems[j].name;
-        cartEntries[i].unit = allItems[j].unit;
-        break;
-      }
+    var item = findItem(allItems, cartEntry.barcode);
+    if (item) {
+      cartEntry.price = item.price;
+      cartEntry.name = item.name;
+      cartEntry.unit = item.unit;
+    }
+  }
+}
+
+function findItem(items, barcode) {
+  var item;
+
+  for(var j = 0; j < items.length; j++){
+    if(barcode === items[j].barcode){
+      var item = items[j];
+      break;
     }
   }
 
-  return cartEntries;
+  return item;
 }
 
 function setString(myArray){
