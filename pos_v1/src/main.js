@@ -49,7 +49,7 @@ function findLoadAllItems(barcode, loadAllItems){
 }
 
 function getInventoryText(carItems){
-  var text = '';
+  var text = '***<没钱赚商店>购物清单***\n';
   var inventoryText = '';
   var promotionText = '挥泪赠送商品：\n';
   var summaryText='';
@@ -75,16 +75,20 @@ function getInventoryText(carItems){
 
     summaryMoney += num * item.price;
   }
-  
+
   summaryText += '总计：' + summaryMoney.toFixed(2) + '(元)\n' +
                  '节省：' + saveMoney.toFixed(2) + '(元)\n';
 
-  var text =
-            '***<没钱赚商店>购物清单***\n' + inventoryText +
-            '----------------------\n' + promotionText +
-            '----------------------\n' + summaryText +
-            '**********************';
 
+  text = join(inventoryText, promotionText, summaryText, text);
+
+  return text;
+}
+
+function join(inventoryText, promotionText, summaryText, text){
+  text += inventoryText + '----------------------\n' +
+          promotionText + '----------------------\n' +
+          summaryText + '**********************';
   return text;
 }
 
