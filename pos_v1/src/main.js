@@ -85,12 +85,14 @@ function getInventoryText(cartEntries){
 
     var cartEntry = cartEntries[i];
 
+    var promotionCount = getPromotionCount(cartEntry.num);
+
     for(var j = 0; j < loadPromotions()[0].barcodes.length; j++){
       if(cartEntry.barcode === loadPromotions()[0].barcodes[j]){
         b = false;
-        cartEntry.sum = cartEntry.price * cartEntry.num - (Math.floor((cartEntry.num)/3)) * cartEntry.price;
-        saveMoney += (Math.floor((cartEntry.num)/3)) * cartEntry.price;
-        promotionText += '名称：'+ cartEntry.name +'，数量：'+ Math.floor((cartEntry.num)/3) + cartEntry.unit + '\n';
+        cartEntry.sum = cartEntry.price * cartEntry.num - promotionCount * cartEntry.price;
+        saveMoney += promotionCount * cartEntry.price;
+        promotionText += '名称：'+ cartEntry.name +'，数量：'+ promotionCount + cartEntry.unit + '\n';
         break;
       }
     }
@@ -99,7 +101,7 @@ function getInventoryText(cartEntries){
       cartEntry.sum = cartEntry.price * cartEntry.num;
     }
 
-    inventoryText+= '名称：' + cartEntry.name + '，' + '数量：'+ cartEntry.num + cartEntry.unit + '，单价：' + cartEntry.price.toFixed(2) +'(元)，小计：' + cartEntry.sum.toFixed(2) +'(元)\n';
+    inventoryText += '名称：' + cartEntry.name + '，' + '数量：'+ cartEntry.num + cartEntry.unit + '，单价：' + cartEntry.price.toFixed(2) +'(元)，小计：' + cartEntry.sum.toFixed(2) +'(元)\n';
 
     totalAmount += cartEntry.sum;
   }
@@ -107,4 +109,8 @@ function getInventoryText(cartEntries){
   inventoryText += '----------------------\n' + '挥泪赠送商品：\n' + promotionText + '----------------------\n' + '总计：'+ totalAmount.toFixed(2) +'(元)\n' + '节省：'+ saveMoney.toFixed(2) +'(元)\n' + '**********************';
 
   return inventoryText;
+}
+
+function getPromotionCount(number) {
+  return Math.floor(number / 3);
 }
