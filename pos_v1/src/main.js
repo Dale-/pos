@@ -1,35 +1,45 @@
 function printInventory(inputs){
-  var numInfo = infoNum(inputs);
-  var myArray = addProperty(numInfo);
+  var cartEntries = getCartEntries(inputs);
+  var myArray = addProperty(cartEntries);
   setString(myArray);
 }
 
-function infoNum(inputs){
-  var myArray = [];
+function getCartEntries(inputs){
+  var cartEntries = [];
 
   for(var i = 0; i < inputs.length; i++){
 
-    var b = true;
+    var array = inputs[i].split("-");
+    var barcode = array[0];
 
-    if(inputs[i].split("-").length > 1){
-      var arr = inputs[i].split("-");
-      myArray[myArray.length] = { barcode : arr[0] , num : arr[1] };
-      continue;
+    var number = 1;
+    if (array[1]) {
+      number = parseFloat(array[1]);
     }
 
-    for(var j = 0; j < myArray.length; j++){
-      if(inputs[i] === myArray[j].barcode){
-        myArray[j].num++;
-        b = false;
-      }
+    var cartEntry = findCartEntry(cartEntries, barcode);
+    if (cartEntry) {
+      cartEntry.num += number;
+    } else {
+      cartEntries.push({ barcode: barcode , num: number });
     }
 
-    if(b){
-      myArray[myArray.length] = { barcode : inputs[i] , num : 1 };
+  }
+
+  return cartEntries;
+}
+
+function findCartEntry(cartEntries, barcode) {
+  var cartEntry;
+
+  for(var x = 0; x < cartEntries.length; x++) {
+    if (cartEntries[x].barcode === barcode) {
+      cartEntry = cartEntries[x];
+      break;
     }
   }
 
-  return myArray;
+  return cartEntry;
 }
 
 function addProperty(myArray){
