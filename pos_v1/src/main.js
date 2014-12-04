@@ -47,40 +47,41 @@ function findAllItems(barcode, allItems){
 }
 
 function getInventoryText(cartItems){
-  var inventoryText = '';
+  var inventoryText = '***<没钱赚商店>购物清单***\n';
   var promotionText = '';
   var summaryText = '';
   var saveMoney = 0;
   var totalMoney = 0;
 
-  inventoryText = '***<没钱赚商店>购物清单***\n';
-
   for(var i = 0; i < cartItems.length; i++){
 
-    var num = cartItems[i].count;
+    var count = cartItems[i].count;
     var cartItem = cartItems[i].item;
+    var itemPrice = cartItem.price;
+    var itemUnit = cartItem.unit;
+    var itemName = cartItem.name;
 
-    if(isPromotion(cartItems[i].item.barcode, loadPromotions())){
-      promotionNum = Math.floor(num / 3);
-      promotionText += '名称：' + cartItem.name + '，数量：' +
-                       promotionNum + cartItem.unit +'\n';
-      saveMoney += promotionNum * cartItem.price;
-      num = num - promotionNum;
+    if(isPromotion(cartItem.barcode, loadPromotions())){
+      promotionNum = Math.floor(count / 3);
+      promotionText += '名称：' + itemName + '，数量：' +
+                       promotionNum + itemUnit +'\n';
+      saveMoney += promotionNum * itemPrice;
+      count = count - promotionNum;
     }
 
-    inventoryText += '名称：' + cartItem.name + '，数量：' +
-                     cartItems[i].count + cartItem.unit + '，单价：' +
-                     (cartItem.price).toFixed(2) + '(元)，小计：' +
-                     (num * cartItem.price).toFixed(2) + '(元)\n';
+    inventoryText += '名称：' + itemName + '，数量：' +
+                     cartItems[i].count + itemUnit + '，单价：' +
+                     cartItem.price.toFixed(2) + '(元)，小计：' +
+                     (count * cartItem.price).toFixed(2) + '(元)\n';
 
-    totalMoney += num * cartItem.price;
+    totalMoney += count * itemPrice;
     }
 
     summaryText = '总计：' + totalMoney.toFixed(2) + '(元)\n' +
                   '节省：' + saveMoney.toFixed(2) + '(元)\n';
 
     inventoryText = connectString(inventoryText, promotionText, summaryText);
-    
+
     return inventoryText;
   }
 
@@ -93,15 +94,21 @@ function getInventoryText(cartItems){
   }
 
 function isPromotion(barcode, loadPromotions){
-  var isPromotion = false;
+  var isPromotion ;
   for(var i = 0; i < loadPromotions.length; i++){
     if(loadPromotions[i].type === 'BUY_TWO_GET_ONE_FREE'){
-      for(var j = 0; j < loadPromotions[i].barcodes.length; j++){
-        if(barcode == loadPromotions[i].barcodes[j]){
-          isPromotion = true;
-        }
-      }
+      isPromotion = isEqualBarcode(barcode, loadPromotions[i].barcodes);
     }
   }
   return isPromotion;
+}
+
+function isEqualBarcode (barcode, barcodes){
+  var isEqualBarcode = false;
+  for(var j = 0; j < barcodes.length; j++){
+    if(barcode == barcodes[j]){
+      isEqualBarcode = true;
+    }
+  }
+  return isEqualBarcode;
 }
