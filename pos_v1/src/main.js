@@ -18,10 +18,11 @@ function getCartItems(tags){
     var cartItem = findCartItems(barcode, cartItems);
     if(cartItem){
       cartItem.count += count;
-    }else{
-      var newItem = findAllItems(barcode, loadAllItems());
-      cartItems.push({ item: newItem , count: count});
+      continue;
     }
+
+    var newItem = findAllItems(barcode, loadAllItems());
+    cartItems.push({ item: newItem , count: count});
   }
   return cartItems;
 }
@@ -62,31 +63,38 @@ function getInventoryText(cartItems){
     var itemUnit = item.unit;
     var itemName = item.name;
 
-    if(isPromotion(item.barcode, loadPromotions())){
+    if(isPromotionBarcode(item.barcode, loadPromotions())){
       promotionNum = Math.floor(count / 3);
-      promotionText += '名称：' + itemName + '，数量：' +
-                       promotionNum + itemUnit +'\n';
+      promotionText += getPromotionText(itemName, promotionNum, itemUnit);
       saveMoney += promotionNum * itemPrice;
       count = count - promotionNum;
     }
-
     inventoryText += '名称：' + itemName + '，数量：' +
                      cartItem.count + itemUnit + '，单价：' +
                      item.price.toFixed(2) + '(元)，小计：' +
                      (count * item.price).toFixed(2) + '(元)\n';
-
     totalMoney += count * itemPrice;
     }
-
-  summaryText = '总计：' + totalMoney.toFixed(2) + '(元)\n' +
-                  '节省：' + saveMoney.toFixed(2) + '(元)\n';
-
-  inventoryText = connectString(inventoryText, promotionText, summaryText);
-
+  summaryText = getSummaryText(totalMoney, saveMoney);
+  inventoryText = joinString(inventoryText, promotionText, summaryText);
   return inventoryText;
 }
 
-function connectString(inventoryText, promotionText, summaryText){
+function getPromotionText(itemName, promotionNum, itemUnit){
+  var promotionText;
+  promotionText = '名称：' + itemName + '，数量：' +promotionNum +
+                   itemUnit +'\n';
+  return promotionText;
+}
+
+function getSummaryText(totalMoney, saveMoney){
+  var summaryText;
+  summaryText = '总计：' + totalMoney.toFixed(2) + '(元)\n' +
+                '节省：' + saveMoney.toFixed(2) + '(元)\n';
+  return summaryText;
+}
+
+function joinString(inventoryText, promotionText, summaryText){
   inventoryText = inventoryText + '----------------------\n' +
                   '挥泪赠送商品：\n' + promotionText +
                   '----------------------\n' + summaryText +
@@ -94,22 +102,19 @@ function connectString(inventoryText, promotionText, summaryText){
   return inventoryText;
 }
 
-function isPromotion(barcode, loadPromotions){
-  var isPromotion ;
-  for(var i = 0; i < loadPromotions.length; i++){
-    if(loadPromotions[i].type === 'BUY_TWO_GET_ONE_FREE'){
-      isPromotion = isEqualBarcode(barcode, loadPromotions[i].barcodes);
+function isPromotionBarcode(barcode, promotions){
+  var isPromotionBarcode ;
+  for(var i = 0; i < promotions.length; i++){
+    if(promotions[i].type === 'BUY_TWO_GET_ONE_FREE'){
+      isPromotionBarcode = containsBarcode(barcode, promotions[i].barcodes);
     }
   }
-  return isPromotion;
+  return isPromotionBarcode;
 }
 
-function isEqualBarcode (barcode, barcodes){
-  var isEqualBarcode = false;
+function containsBarcode (barcode, barcodes){
   for(var j = 0; j < barcodes.length; j++){
-    if(barcode == barcodes[j]){
-      isEqualBarcode = true;
-    }
+    if (barcode == barcodes[j]) { return true; }
   }
-  return isEqualBarcode;
+  return false;
 }
