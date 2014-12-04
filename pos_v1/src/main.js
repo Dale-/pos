@@ -77,21 +77,21 @@ function getInventoryText(cartItems){
     totalMoney += count * itemPrice;
     }
 
-    summaryText = '总计：' + totalMoney.toFixed(2) + '(元)\n' +
+  summaryText = '总计：' + totalMoney.toFixed(2) + '(元)\n' +
                   '节省：' + saveMoney.toFixed(2) + '(元)\n';
 
-    inventoryText = connectString(inventoryText, promotionText, summaryText);
+  inventoryText = connectString(inventoryText, promotionText, summaryText);
 
-    return inventoryText;
-  }
+  return inventoryText;
+}
 
-  function connectString(inventoryText, promotionText, summaryText){
-    inventoryText = inventoryText + '----------------------\n' +
-                    '挥泪赠送商品：\n' + promotionText +
-                    '----------------------\n' + summaryText +
-                    '**********************';
-    return inventoryText;
-  }
+function connectString(inventoryText, promotionText, summaryText){
+  inventoryText = inventoryText + '----------------------\n' +
+                  '挥泪赠送商品：\n' + promotionText +
+                  '----------------------\n' + summaryText +
+                  '**********************';
+  return inventoryText;
+}
 
 function isPromotion(barcode, loadPromotions){
   var isPromotion ;
