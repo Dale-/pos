@@ -15,7 +15,7 @@ function getCartItems(tags){
       count = parseFloat(splitedArray[1]);
     }
 
-    cartItem = findCartItems(barcode, cartItems);
+    var cartItem = findCartItems(barcode, cartItems);
     if(cartItem){
       cartItem.count += count;
     }else{
