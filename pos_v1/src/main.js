@@ -55,13 +55,14 @@ function getInventoryText(cartItems){
 
   for(var i = 0; i < cartItems.length; i++){
 
-    var count = cartItems[i].count;
-    var cartItem = cartItems[i].item;
-    var itemPrice = cartItem.price;
-    var itemUnit = cartItem.unit;
-    var itemName = cartItem.name;
+    var cartItem = cartItems[i];
+    var count = cartItem.count;
+    var item = cartItem.item;
+    var itemPrice = item.price;
+    var itemUnit = item.unit;
+    var itemName = item.name;
 
-    if(isPromotion(cartItem.barcode, loadPromotions())){
+    if(isPromotion(item.barcode, loadPromotions())){
       promotionNum = Math.floor(count / 3);
       promotionText += '名称：' + itemName + '，数量：' +
                        promotionNum + itemUnit +'\n';
@@ -70,9 +71,9 @@ function getInventoryText(cartItems){
     }
 
     inventoryText += '名称：' + itemName + '，数量：' +
-                     cartItems[i].count + itemUnit + '，单价：' +
-                     cartItem.price.toFixed(2) + '(元)，小计：' +
-                     (count * cartItem.price).toFixed(2) + '(元)\n';
+                     cartItem.count + itemUnit + '，单价：' +
+                     item.price.toFixed(2) + '(元)，小计：' +
+                     (count * item.price).toFixed(2) + '(元)\n';
 
     totalMoney += count * itemPrice;
     }
