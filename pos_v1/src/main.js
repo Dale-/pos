@@ -52,9 +52,9 @@ function getInventoryText(cartItems){
       count = count - promotionNum;
     }
     inventoryText += '名称：' + itemName + '，数量：' +
-    cartItem.count + itemUnit + '，单价：' +
-    item.price.toFixed(2) + '(元)，小计：' +
-    (count * item.price).toFixed(2) + '(元)\n';
+                     cartItem.count + itemUnit + '，单价：' +
+                     item.price.toFixed(2) + '(元)，小计：' +
+                     (count * item.price).toFixed(2) + '(元)\n';
     totalMoney += count * itemPrice;
   });
 
