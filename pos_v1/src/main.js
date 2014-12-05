@@ -1,9 +1,9 @@
 function printInventory(tags){
-  // var cartItems = getCartItems(tags);
-  // var inventoryText = getInventoryText(cartItems);
-  // console.log(inventoryText);
-//  _.contains({ 'name': 'fred', 'age': 40 }, 'fred');
-  console.log(_.has(['name', 'fred', 'age'] , 'name'));
+  var cartItems = getCartItems(tags);
+  var inventoryText = getInventoryText(cartItems);
+  console.log(inventoryText);
+// //  _.contains({ 'name': 'fred', 'age': 40 }, 'fred');
+//   console.log(_.has(['name', 'fred', 'age'] , 'name'));
 }
 
 function getCartItems(tags){
@@ -53,16 +53,19 @@ function getInventoryText(cartItems){
       saveMoney += promotionNum * itemPrice;
       count = count - promotionNum;
     }
-    inventoryText += '名称：' + itemName + '，数量：' +
-                     cartItem.count + itemUnit + '，单价：' +
-                     item.price.toFixed(2) + '(元)，小计：' +
-                     (count * item.price).toFixed(2) + '(元)\n';
+    inventoryText += getPartOfInventoryText(itemName, cartItem.count,
+                     itemUnit,item.price,count * item.price);
     totalMoney += count * itemPrice;
   });
 
   summaryText = getSummaryText(totalMoney, saveMoney);
   inventoryText = joinString(inventoryText, promotionText, summaryText);
   return inventoryText;
+}
+
+function getPartOfInventoryText(name, count, unit, price, subTotal){
+  return ('名称：' + name + '，数量：' + count + unit + '，单价：' +
+          price.toFixed(2) + '(元)，小计：' + subTotal.toFixed(2) + '(元)\n');
 }
 
 function getPromotionText(itemName, promotionNum, itemUnit){
@@ -91,7 +94,7 @@ function isPromotionBarcode(barcode, promotions){
   var isPromotionBarcode ;
   _.forEach(promotions, function(promotion){
     if(promotion.type === 'BUY_TWO_GET_ONE_FREE'){
-      isPromotionBarcode = _.contains(promotion.barcodes, barcode) ;
+      isPromotionBarcode = _.contains(promotion.barcodes, barcode);
     }
   });
   return isPromotionBarcode;
