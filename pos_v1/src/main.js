@@ -1,7 +1,9 @@
 function printInventory(tags){
-  var cartItems = getCartItems(tags);
-  var inventoryText = getInventoryText(cartItems);
-  console.log(inventoryText);
+  // var cartItems = getCartItems(tags);
+  // var inventoryText = getInventoryText(cartItems);
+  // console.log(inventoryText);
+//  _.contains({ 'name': 'fred', 'age': 40 }, 'fred');
+  console.log(_.has(['name', 'fred', 'age'] , 'name'));
 }
 
 function getCartItems(tags){
@@ -89,17 +91,8 @@ function isPromotionBarcode(barcode, promotions){
   var isPromotionBarcode ;
   _.forEach(promotions, function(promotion){
     if(promotion.type === 'BUY_TWO_GET_ONE_FREE'){
-      isPromotionBarcode = containsBarcode(barcode, promotion.barcodes);
+      isPromotionBarcode = _.contains(promotion.barcodes, barcode) ;
     }
   });
   return isPromotionBarcode;
-}
-
-function containsBarcode (barcode, barcodes){
-  var isContain = false;
-  _.forEach(barcodes, function(newBarcode){
-    if (barcode == newBarcode)
-      isContain = true;
-  });
-  return isContain;
 }
