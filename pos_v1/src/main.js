@@ -6,45 +6,28 @@ function printInventory(tags){
 
 function getCartItems(tags){
   var cartItems = [];
+  var allItems = loadAllItems();
 
-  for(var i = 0; i < tags.length; i++){
-    var splitedArray = tags[i].split('-');
+  _.forEach(tags, function(tag){
+    var splitedArray = tag.split('-');
     barcode = splitedArray[0];
     count = 1;
     if(splitedArray[1]){
       count = parseFloat(splitedArray[1]);
     }
 
-    var cartItem = findCartItems(barcode, cartItems);
+    var cartItem = _.find(cartItems, function(cartItem){
+      return barcode === cartItem.item.barcode;
+    });
+
     if(cartItem){
       cartItem.count += count;
-      continue;
+    }else{
+      var newItem = _.find(allItems, { barcode: barcode});
+      cartItems.push({ item: newItem , count: count});
     }
-
-    var newItem = findAllItems(barcode, loadAllItems());
-    cartItems.push({ item: newItem , count: count});
-  }
+});
   return cartItems;
-}
-
-function findCartItems(barcode, cartItems){
-  var cartItem;
-  for(var i = 0; i < cartItems.length; i++){
-    if(barcode === cartItems[i].item.barcode){
-      cartItem = cartItems[i];
-    }
-  }
-  return cartItem;
-}
-
-function findAllItems(barcode, allItems){
-  var cartItem;
-  for(var i = 0; i < allItems.length; i++){
-    if(barcode == allItems[i].barcode){
-      cartItem = allItems[i]
-    } ;
-  }
-  return cartItem;
 }
 
 function getInventoryText(cartItems){
@@ -54,9 +37,8 @@ function getInventoryText(cartItems){
   var saveMoney = 0;
   var totalMoney = 0;
 
-  for(var i = 0; i < cartItems.length; i++){
-
-    var cartItem = cartItems[i];
+  _.forEach(cartItems, function(carItem){
+    var cartItem = carItem;
     var count = cartItem.count;
     var item = cartItem.item;
     var itemPrice = item.price;
@@ -70,11 +52,12 @@ function getInventoryText(cartItems){
       count = count - promotionNum;
     }
     inventoryText += '名称：' + itemName + '，数量：' +
-                     cartItem.count + itemUnit + '，单价：' +
-                     item.price.toFixed(2) + '(元)，小计：' +
-                     (count * item.price).toFixed(2) + '(元)\n';
+    cartItem.count + itemUnit + '，单价：' +
+    item.price.toFixed(2) + '(元)，小计：' +
+    (count * item.price).toFixed(2) + '(元)\n';
     totalMoney += count * itemPrice;
-    }
+  });
+
   summaryText = getSummaryText(totalMoney, saveMoney);
   inventoryText = joinString(inventoryText, promotionText, summaryText);
   return inventoryText;
@@ -104,17 +87,19 @@ function joinString(inventoryText, promotionText, summaryText){
 
 function isPromotionBarcode(barcode, promotions){
   var isPromotionBarcode ;
-  for(var i = 0; i < promotions.length; i++){
-    if(promotions[i].type === 'BUY_TWO_GET_ONE_FREE'){
-      isPromotionBarcode = containsBarcode(barcode, promotions[i].barcodes);
+  _.forEach(promotions, function(promotion){
+    if(promotion.type === 'BUY_TWO_GET_ONE_FREE'){
+      isPromotionBarcode = containsBarcode(barcode, promotion.barcodes);
     }
-  }
+  });
   return isPromotionBarcode;
 }
 
 function containsBarcode (barcode, barcodes){
-  for(var j = 0; j < barcodes.length; j++){
-    if (barcode == barcodes[j]) { return true; }
-  }
-  return false;
+  var isContain = false;
+  _.forEach(barcodes, function(newBarcode){
+    if (barcode == newBarcode)
+      isContain = true;
+  });
+  return isContain;
 }
