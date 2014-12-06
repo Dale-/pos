@@ -45,8 +45,8 @@ function getInventoryText(cartItems) {
     var itemName = item.name;
 
     if(isPromotionBarcode(item.barcode, loadPromotions())) {
-      promotionNum = Math.floor(count / 3);
-      promotionText += getPromotionText(itemName, promotionNum, itemUnit);
+      promotionText += getPromotionText(itemName,
+                       Math.floor(count / 3), itemUnit);
       saveMoney += promotionNum * itemPrice;
       count = count - promotionNum;
     }
