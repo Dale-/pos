@@ -27,7 +27,5 @@ function getSummaryText(totalAccount) {
 }
 
 function joinText(cartItemsText, splitLine, summaryText, endingLine) {
-  var inventoryText;
-  inventoryText = cartItemsText + splitLine + summaryText + endingLine;
-  return inventoryText;
+  return cartItemsText + splitLine + summaryText + endingLine;
 }
