@@ -6,14 +6,15 @@ function printInventory(inputs) {
 function getInventoryText(inputs) {
   var cartItemsText = '***<没钱赚商店>购物清单***\n';
   var totalAccount = 0;
-  var cartItem = inputs[i];
+  var cartItem;
 
   for(var i = 0; i < inputs.length; i++) {
+    cartItem = inputs[i];
     cartItemsText += '名称：' + cartItem.name + '，数量：' + cartItem.count +
                      cartItem.unit + '，单价：' +
                      cartItem.price.toFixed(2) +'(元)，小计：' +
-                     (cartItem[i].count * cartItem.price).toFixed(2) + '(元)\n';
-    totalAccount += cartItem[i].count * cartItem[i].price;
+                     (cartItem.count * cartItem.price).toFixed(2) + '(元)\n';
+    totalAccount += cartItem.count * cartItem.price;
   }
   var summaryText = getSummaryText(totalAccount);
   var inventoryText = joinText(cartItemsText, '----------------------\n',
@@ -22,9 +23,7 @@ function getInventoryText(inputs) {
 }
 
 function getSummaryText(totalAccount) {
-  var summaryText = '';
-  summaryText = '总计：' + totalAccount.toFixed(2) + '(元)\n';
-  return summaryText;
+  return '总计：' + totalAccount.toFixed(2) + '(元)\n';
 }
 
 function joinText(cartItemsText, splitLine, summaryText, endingLine) {
