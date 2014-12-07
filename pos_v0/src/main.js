@@ -6,13 +6,12 @@ function printInventory(inputs) {
 function getInventoryText(inputs) {
   var cartItemsText = '***<没钱赚商店>购物清单***\n';
   var totalAccount = 0;
-  var cartItem;
 
-  for(var i = 0; i < inputs.length; i++) {
-    cartItem = inputs[i];
+  _.forEach(inputs, function(cartItem) {
     cartItemsText += getCartItemText(cartItem);
     totalAccount += cartItem.count * cartItem.price;
-  }
+  });
+  
   var summaryText = getSummaryText(totalAccount);
   var inventoryText = joinText(cartItemsText, '----------------------\n',
                       summaryText, '**********************');
