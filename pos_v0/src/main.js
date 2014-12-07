@@ -10,16 +10,20 @@ function getInventoryText(inputs) {
 
   for(var i = 0; i < inputs.length; i++) {
     cartItem = inputs[i];
-    cartItemsText += '名称：' + cartItem.name + '，数量：' + cartItem.count +
-                     cartItem.unit + '，单价：' +
-                     cartItem.price.toFixed(2) +'(元)，小计：' +
-                     (cartItem.count * cartItem.price).toFixed(2) + '(元)\n';
+    cartItemsText += getCartItemText(cartItem);
     totalAccount += cartItem.count * cartItem.price;
   }
   var summaryText = getSummaryText(totalAccount);
   var inventoryText = joinText(cartItemsText, '----------------------\n',
                       summaryText, '**********************');
   return inventoryText;
+}
+
+function getCartItemText(cartItem){
+  return '名称：' + cartItem.name + '，数量：' + cartItem.count +
+         cartItem.unit + '，单价：' +
+         cartItem.price.toFixed(2) +'(元)，小计：' +
+         (cartItem.count * cartItem.price).toFixed(2) + '(元)\n';
 }
 
 function getSummaryText(totalAccount) {
