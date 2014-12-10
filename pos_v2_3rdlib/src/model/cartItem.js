@@ -20,6 +20,13 @@ CartItem.prototype.setCount = function(count) {
   this.count = count;
 };
 
+CartItem.createCartItem = function(barcode) {
+  var newItem = _.find(loadAllItems(), { barcode: barcode});
+  var isPromotion = Promotion.isPromotionBarcode(barcode);
+  var cartItem = new CartItem( newItem , count , isPromotion);
+  cartItems.push(cartItem);
+};
+
 CartItem.getCartItems = function(tags) {
   var cartItems = [] ;
 
@@ -38,10 +45,7 @@ CartItem.getCartItems = function(tags) {
     if(cartItem) {
       cartItem.setCount( cartItem.getCount() + count );
     }else {
-      var newItem = _.find(loadAllItems(), { barcode: barcode});
-      var isPromotion = Promotion.isPromotionBarcode(barcode);
-      var cartItem = new CartItem( newItem , count , isPromotion);
-      cartItems.push(cartItem);
+      CartItem.createCartItem(barcode);
     }
 
   });
