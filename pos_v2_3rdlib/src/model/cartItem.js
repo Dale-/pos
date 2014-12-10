@@ -9,6 +9,10 @@ CartItem.prototype.setPayCount = function(payCount) {
   this.payCount = payCount;
 };
 
+CartItem.prototype.getIsPromotion = function() {
+  return this.isPromotion;
+};
+
 CartItem.prototype.getItem = function() {
   return this.item;
 };

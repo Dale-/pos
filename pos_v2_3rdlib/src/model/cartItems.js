@@ -39,4 +39,5 @@ CartItems.prototype.getCartItems = function(tags) {
     }
   });
   CartItems.getCartItemsPayCount(cartItems);
+  return cartItems;
 };
