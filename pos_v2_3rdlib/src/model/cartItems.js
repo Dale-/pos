@@ -2,7 +2,7 @@ function CartItems() {
    this.cartItems = [];
 }
 
-CartItems.createCartItem = function(barcode , count, cartItems) {
+CartItems.pushCartItem = function(barcode , count, cartItems) {
   var newItem = _.find(loadAllItems(), { barcode: barcode});
   var isPromotion = Promotion.isPromotionBarcode(barcode);
   var cartItem = new CartItem( newItem , count ,isPromotion);
@@ -35,7 +35,7 @@ CartItems.prototype.getCartItems = function(tags) {
     if(cartItem) {
       cartItem.setCount( cartItem.getCount() + count );
     }else {
-      CartItems.createCartItem(barcode, count, cartItems);
+      CartItems.pushCartItem(barcode, count, cartItems);
     }
   });
   CartItems.getCartItemsPayCount(cartItems);
