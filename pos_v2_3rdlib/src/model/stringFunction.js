@@ -18,7 +18,7 @@ StringFunction.getInventoryText = function (cartItems, dataText) {
     var itemName = item.name;
     var promotionNum = Math.floor(count / 3);
     var isPromotionBarcode = Promotion.isPromotionBarcode
-    (item.barcode, loadPromotions());
+    (item.barcode);
 
     if(isPromotionBarcode) {
       promotionText += StringFunction.getPromotionText(itemName,

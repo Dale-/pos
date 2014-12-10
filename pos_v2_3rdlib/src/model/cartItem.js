@@ -1,6 +1,7 @@
-function CartItem(item, count) {
+function CartItem(item, count, isPromotion) {
   this.item = item;
   this.count = count || 0;
+  this.isPromotion = isPromotion;
 }
 
 CartItem.prototype.getItem = function() {
@@ -38,10 +39,12 @@ CartItem.getCartItems = function(tags) {
       cartItem.setCount( cartItem.getCount() + count );
     }else {
       var newItem = _.find(loadAllItems(), { barcode: barcode});
-      var cartItem = new CartItem( newItem , count);
+      var isPromotion = Promotion.isPromotionBarcode(barcode);
+      var cartItem = new CartItem( newItem , count , isPromotion);
       cartItems.push(cartItem);
     }
 
   });
+  console.log(cartItems);
   return cartItems;
 };
