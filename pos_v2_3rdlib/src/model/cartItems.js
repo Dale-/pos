@@ -38,6 +38,7 @@ CartItems.prototype.getCartItems = function(tags) {
       CartItems.pushCartItem(barcode, count, cartItems);
     }
   });
+  
   CartItems.getCartItemsPayCount(cartItems);
   return cartItems;
 };
