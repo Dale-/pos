@@ -10,11 +10,11 @@ Cart.pushCartItem = function(barcode , count, cartItems) {
 
 Cart.getCartItemsPayCount = function(cartItems) {
   _.forEach(cartItems,function(cartItem){
-    var payCount = cartItem.getCount();
-    if(cartItem.getIsPromotion()){
+    var payCount = cartItem.count;
+    if(cartItem.isPromotion){
       payCount = payCount - Math.floor(payCount/3) ;
     }
-    cartItem.setPayCount(payCount);
+    cartItem.payCount = payCount;
   });
 };
 
@@ -29,10 +29,10 @@ Cart.prototype.getCartItems = function(tags) {
     }
 
     var cartItem = _.find(cartItems, function(cartItem) {
-      return barcode === cartItem.getItem().getBarcode();
+      return barcode === cartItem.item.barcode;
     });
     if(cartItem) {
-      cartItem.setCount( cartItem.getCount() + count );
+      cartItem.count += count ;
     }else {
       Cart.pushCartItem(barcode, count, cartItems);
     }
