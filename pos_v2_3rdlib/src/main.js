@@ -4,7 +4,7 @@ function printInventory(tags) {
   _.forEach(tags, function(tag) {
     cart.addCartItem(scanner.scan(tag));
   });
-  
-  var inventory = new Inventory(cart.cartItems);
-  console.log(inventory.inventoryText);
+
+  var pos = new Pos(cart.cartItems);
+  console.log(pos.inventoryText);
 }

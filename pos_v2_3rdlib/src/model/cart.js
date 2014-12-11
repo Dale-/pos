@@ -7,6 +7,7 @@ Cart.prototype.addCartItem = function(cart_item) {
   var newCartItem = _.find(cartItems, function(cartItem) {
     return  cart_item.item.barcode == cartItem.item.barcode;
   });
+  
   if(newCartItem) {
     newCartItem.count += count ;
   }else {
