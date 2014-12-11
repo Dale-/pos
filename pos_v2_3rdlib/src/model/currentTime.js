@@ -5,4 +5,4 @@ function CurrentTime() {
 CurrentTime.prototype.getCurrentTimeText = function() {
   var currentTimeText = '打印时间：' + this.currentTime + '\n';
   return currentTimeText;
-};
+}; 
