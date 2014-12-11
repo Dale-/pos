@@ -5,8 +5,7 @@ function Cart() {
 Cart.pushCartItem = function(barcode , count, cartItems) {
   var newItem = _.find(loadAllItems(), { barcode: barcode});
   var isPromotion = Promotion.isPromotionBarcode(barcode);
-  var cartItem = new CartItem( newItem , count ,isPromotion);
-  cartItems.push(cartItem);
+  cartItems.push(new CartItem( newItem , count ,isPromotion));
 };
 
 Cart.getCartItemsPayCount = function(cartItems) {
