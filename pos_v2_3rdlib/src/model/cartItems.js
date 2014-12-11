@@ -11,8 +11,8 @@ CartItems.pushCartItem = function(barcode , count, cartItems) {
 
 CartItems.getCartItemsPayCount = function(cartItems) {
   _.forEach(cartItems,function(cartItem){
-    var payCount = cartItem.count;
-    if(cartItem.isPromotion){
+    var payCount = cartItem.getCount();
+    if(cartItem.getIsPromotion()){
       payCount = payCount - Math.floor(payCount/3) ;
     }
     cartItem.setPayCount(payCount);
