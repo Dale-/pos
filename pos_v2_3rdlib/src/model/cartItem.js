@@ -4,3 +4,12 @@ function CartItem(item, count, isPromotion) {
   this.isPromotion = isPromotion;
   this.payCount = 0;
 }
+
+// CartItem.prototype.CalculatePayCount = function() {
+//   this.payCount = this.count;
+//   if(this.isPromotion) {
+//     this.payCount = Math.floor(this.payCount / 3);
+//   }
+//   //console.log('------------\n');
+//   //return this.payCount;
+// };

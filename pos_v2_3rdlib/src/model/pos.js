@@ -43,7 +43,7 @@ Pos.prototype.getTotalAndSavingText = function() {
 
   _.forEach(cartItems, function(cartItem) {
     var item = cartItem.item;
-    if(cartItem.getIsPromotion()){
+    if(cartItem.isPromotion) {
       savingMoney += Math.floor(cartItem.count / 3) * item.price;
     }
     totalMoney += item.price * cartItem.payCount;
