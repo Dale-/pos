@@ -1,3 +1,8 @@
+var _ = require('lodash');
+var fixtures = require('../spec/fixtures');
+var loadAllItems = fixtures.loadAllItems;
+var loadPromotions = fixtures.loadPromotions;
+
 function printInventory(tags) {
   var cartItems = getCartItems(tags);
   var inventoryText = getInventoryText(cartItems);
@@ -43,10 +48,11 @@ function getInventoryText(cartItems) {
     var itemPrice = item.price;
     var itemUnit = item.unit;
     var itemName = item.name;
+    var promotionNum = Math.floor(count / 3);
 
     if(isPromotionBarcode(item.barcode, loadPromotions())) {
       promotionText += getPromotionText(itemName,
-                       Math.floor(count / 3), itemUnit);
+                       promotionNum, itemUnit);
       saveMoney += promotionNum * itemPrice;
       count = count - promotionNum;
     }
@@ -72,7 +78,7 @@ function getPromotionText(itemName, promotionNum, itemUnit) {
 
 function getSummaryText(totalAccount, saveMoney) {
   return '总计：' + totalAccount.toFixed(2) + '(元)\n' +
-         '节省：' + saveMoney.toFixed(2) + '(元)\n';;
+         '节省：' + saveMoney.toFixed(2) + '(元)\n';
 }
 
 function joinString(inventoryText, promotionText, summaryText) {
@@ -91,3 +97,5 @@ function isPromotionBarcode(barcode, promotions) {
   });
   return isPromotionBarcode;
 }
+
+exports.printInventory = printInventory;

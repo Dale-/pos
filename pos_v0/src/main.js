@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 function printInventory(inputs) {
   var inventoryText = getInventoryText(inputs);
   console.log(inventoryText);
@@ -11,7 +13,7 @@ function getInventoryText(inputs) {
     cartItemsText += getCartItemText(cartItem);
     totalAccount += cartItem.count * cartItem.price;
   });
-  
+
   var summaryText = getSummaryText(totalAccount);
   var inventoryText = joinText(cartItemsText, '----------------------\n',
                       summaryText, '**********************');
@@ -32,3 +34,5 @@ function getSummaryText(totalAccount) {
 function joinText(cartItemsText, splitLine, summaryText, endingLine) {
   return cartItemsText + splitLine + summaryText + endingLine;
 }
+
+exports.printInventory = printInventory;
