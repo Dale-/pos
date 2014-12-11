@@ -1,6 +1,6 @@
 function printInventory(tags) {
-  var cartItems = new CartItems();
-  var pos = new Pos(cartItems.getCartItems(tags));
+  var cart = new Cart();
+  var pos = new Pos(cart.getCartItems(tags));
   var content = pos.joinText();
-  console.log(content); 
+  console.log(content);
 }

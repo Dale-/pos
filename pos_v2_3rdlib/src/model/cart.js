@@ -1,15 +1,15 @@
-function CartItems() {
+function Cart() {
    this.cartItems = [];
 }
 
-CartItems.pushCartItem = function(barcode , count, cartItems) {
+Cart.pushCartItem = function(barcode , count, cartItems) {
   var newItem = _.find(loadAllItems(), { barcode: barcode});
   var isPromotion = Promotion.isPromotionBarcode(barcode);
   var cartItem = new CartItem( newItem , count ,isPromotion);
   cartItems.push(cartItem);
 };
 
-CartItems.getCartItemsPayCount = function(cartItems) {
+Cart.getCartItemsPayCount = function(cartItems) {
   _.forEach(cartItems,function(cartItem){
     var payCount = cartItem.getCount();
     if(cartItem.getIsPromotion()){
@@ -19,7 +19,7 @@ CartItems.getCartItemsPayCount = function(cartItems) {
   });
 };
 
-CartItems.prototype.getCartItems = function(tags) {
+Cart.prototype.getCartItems = function(tags) {
   var cartItems = this.cartItems;
   _.forEach(tags, function (tag) {
     var splitedArray = tag.split('-');
@@ -35,10 +35,10 @@ CartItems.prototype.getCartItems = function(tags) {
     if(cartItem) {
       cartItem.setCount( cartItem.getCount() + count );
     }else {
-      CartItems.pushCartItem(barcode, count, cartItems);
+      Cart.pushCartItem(barcode, count, cartItems);
     }
   });
 
-  CartItems.getCartItemsPayCount(cartItems);
+  Cart.getCartItemsPayCount(cartItems);
   return cartItems;
 };
