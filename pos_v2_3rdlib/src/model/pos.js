@@ -14,7 +14,8 @@ Pos.prototype.getInventoryText = function() {
     inventoryText += '名称：' + item.getName() +'，数量：' +
                      cartItem.getCount() + item.getUnit() +'，单价：' +
                      item.getPrice().toFixed(2) +  '(元)，小计：' +
-                     (item.price * cartItem.getPayCount()).toFixed(2) + '(元)\n';
+                     (item.getPrice() * cartItem.getPayCount()).toFixed(2) +
+                     '(元)\n';
   });
 
   return inventoryText;

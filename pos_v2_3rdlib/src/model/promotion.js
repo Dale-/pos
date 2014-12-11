@@ -20,6 +20,6 @@ Promotion.isPromotionBarcode = function(barcode) {
       isPromotionBarcode = _.contains(promotion.barcodes, barcode);
     }
   });
-  
+
   return isPromotionBarcode;
 };

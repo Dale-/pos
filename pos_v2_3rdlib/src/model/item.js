@@ -20,3 +20,18 @@ Item.prototype.getUnit = function() {
 Item.prototype.getPrice = function() {
   return this.price;
 };
+Item.prototype.setBarcode = function(barcode) {
+  this.barcode = barcode;
+};
+
+Item.prototype.setName = function(name) {
+  this.name = name;
+};
+
+Item.prototype.setUnit = function(unit) {
+  this.unit = unit;
+};
+
+Item.prototype.setPrice = function(price) {
+  this.price = price;
+};

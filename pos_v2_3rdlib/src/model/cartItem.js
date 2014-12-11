@@ -17,6 +17,10 @@ CartItem.prototype.getIsPromotion = function() {
   return this.isPromotion;
 };
 
+CartItem.prototype.setIsPromotion = function(isPromotion) {
+  this.isPromotion = isPromotion;
+};
+
 CartItem.prototype.getItem = function() {
   return this.item;
 };
