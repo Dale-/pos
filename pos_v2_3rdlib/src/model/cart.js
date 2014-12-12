@@ -2,17 +2,17 @@ function Cart() {
    this.cartItems = [];
 }
 
-Cart.prototype.addCartItem = function(cart_item) {
-  var cartItems = this.cartItems;
-  var cartItem = _.find(cartItems, function(cartItem) {
-    return  cartItem.getBarcode() === cart_item.getBarcode();
+Cart.prototype.addCartItem = function(newCartItem) {
+
+  var cartItem = _.find(this.cartItems, function(cartItem) {
+    return  cartItem.getBarcode() === newCartItem.getBarcode();
   });
 
   if(cartItem) {
-    cartItem.count += cart_item.count;
+    cartItem.count += newCartItem.count;
   }else {
-    cart_item.isPromotion =
-      Promotion.isPromotionBarcode(cart_item.item.barcode);
-    cartItems.push(cart_item);
+    newCartItem.isPromotion =
+                Promotion.isPromotionBarcode(newCartItem.item.barcode);
+    this.cartItems.push(newCartItem);
   }
 };
