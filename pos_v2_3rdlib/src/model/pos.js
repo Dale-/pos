@@ -1,5 +1,4 @@
-function Pos(cartItems) {
-  this.cartItems = cartItems;
+function Pos() {
   this.firstLine = '***<没钱赚商店>购物清单***\n';
   this.splitLine = '----------------------\n';
   this.lastLIne = '**********************';
