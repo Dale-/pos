@@ -17,7 +17,36 @@ Cart.prototype.addCartItem = function(newCartItem) {
   }
 };
 
-Cart.prototype.toTotalAndSavingText = function() {
+Cart.prototype.setPayCount = function() {
+
+  _.forEach(this.cartItems, function(cartItem){
+    cartItem.getPayCount();
+  });
+};
+
+Cart.prototype.getInventoryText = function() {
+  var inventoryText = '';
+
+  _.forEach(this.cartItems, function(cartItem) {
+    inventoryText += cartItem.toInventoryText();
+  });
+
+  return inventoryText;
+};
+
+Cart.prototype.getPromotionText = function() {
+  var promotionText = '挥泪赠送商品：\n';
+
+  _.forEach(this.cartItems, function(cartItem) {
+    if(cartItem.promotionType) {
+      promotionText += cartItem.toPromotionText();
+    }
+  });
+
+  return promotionText;
+};
+
+Cart.prototype.getTotalAndSavingText = function() {
   var totalMoney = 0;
   var savingMoney = 0;
 
