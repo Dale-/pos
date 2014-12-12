@@ -2,11 +2,15 @@ function Cart() {
    this.cartItems = [];
 }
 
+Cart.prototype.findCartItem = function(barcode) {
+  return _.find(this.cartItems, function(cartItem) {
+    return  cartItem.getBarcode() === barcode;
+  });
+};
+
 Cart.prototype.addCartItem = function(newCartItem) {
 
-  var cartItem = _.find(this.cartItems, function(cartItem) {
-    return  cartItem.getBarcode() === newCartItem.getBarcode();
-  });
+  var cartItem = this.findCartItem(newCartItem.item.barcode);
 
   if(cartItem) {
     cartItem.count += newCartItem.count;
