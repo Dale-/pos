@@ -14,8 +14,8 @@ CartItem.prototype.getPayCount = function () {
 
 CartItem.prototype.toInventoryText = function() {
   return '名称：' + this.item.name +'，数量：' + this.count +
-         this.item.unit+'，单价：' + this.item.price.toFixed(2) +
-         '(元)，小计：' + (this.item.price * this.payCount).toFixed(2) + '(元)\n';
+         this.item.unit+'，单价：' + Util.toFixed(this.item.price) +
+         '(元)，小计：' + Util.toFixed(this.item.price * this.payCount) + '(元)\n';
 };
 
 CartItem.prototype.toPromotionText = function() {
