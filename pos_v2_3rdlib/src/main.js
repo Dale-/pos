@@ -5,6 +5,6 @@ function printInventory(tags) {
     cart.addCartItem(scanner.scan(tag));
   });
 
-  var pos = new Pos(cart.cartItems);
-  console.log(pos.inventoryText);
+  var pos = new Pos();
+  console.log(pos.joinText(cart.cartItems));
 }

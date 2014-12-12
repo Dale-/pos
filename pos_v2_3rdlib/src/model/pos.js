@@ -3,31 +3,30 @@ function Pos(cartItems) {
   this.firstLine = '***<没钱赚商店>购物清单***\n';
   this.splitLine = '----------------------\n';
   this.lastLIne = '**********************';
-  this.inventoryText = this.joinText();
 }
 
-Pos.prototype.setPayCount = function() {
-  
-  _.forEach(this.cartItems, function(cartItem){
+Pos.prototype.setPayCount = function(cartItems) {
+
+  _.forEach(cartItems, function(cartItem){
     cartItem.getPayCount();
   });
 };
 
 
-Pos.prototype.getInventoryText = function() {
+Pos.prototype.getInventoryText = function(cartItems) {
   var inventoryText = '';
 
-  _.forEach(this.cartItems, function(cartItem) {
+  _.forEach(cartItems, function(cartItem) {
     inventoryText += cartItem.toInventoryText();
   });
 
   return inventoryText;
 };
 
-Pos.prototype.getPromotionText = function() {
+Pos.prototype.getPromotionText = function(cartItems) {
   var promotionText = '挥泪赠送商品：\n';
 
-  _.forEach(this.cartItems, function(cartItem) {
+  _.forEach(cartItems, function(cartItem) {
     if(cartItem.isPromotion) {
       promotionText += cartItem.toPromotionText();
     }
@@ -36,11 +35,11 @@ Pos.prototype.getPromotionText = function() {
   return promotionText;
 };
 
-Pos.prototype.getTotalAndSavingText = function() {
+Pos.prototype.getTotalAndSavingText = function(cartItems) {
   var totalMoney = 0;
   var savingMoney = 0;
 
-  _.forEach(this.cartItems, function(cartItem) {
+  _.forEach(cartItems, function(cartItem) {
     if(cartItem.isPromotion) {
       savingMoney += cartItem.toSavingMoney();
     }
@@ -51,11 +50,12 @@ Pos.prototype.getTotalAndSavingText = function() {
          Util.toFixed(savingMoney) + '(元)\n';
 };
 
-Pos.prototype.joinText = function() {
-  this.setPayCount();
+Pos.prototype.joinText = function(cartItems) {
+  this.setPayCount(cartItems);
   var currentTimeText = '打印时间：' + Util.TimeHelper() + '\n';
 
   return this.firstLine + currentTimeText + this.splitLine +
-         this.getInventoryText() + this.splitLine + this.getPromotionText() +
-         this.splitLine + this.getTotalAndSavingText() + this.lastLIne;
+         this.getInventoryText(cartItems) + this.splitLine +
+         this.getPromotionText(cartItems) + this.splitLine +
+         this.getTotalAndSavingText(cartItems) + this.lastLIne;
 };
