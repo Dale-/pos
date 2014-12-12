@@ -41,11 +41,10 @@ Pos.prototype.getTotalAndSavingText = function() {
   var savingMoney = 0;
 
   _.forEach(this.cartItems, function(cartItem) {
-    var item = cartItem.item;
     if(cartItem.isPromotion) {
-      savingMoney += Math.floor(cartItem.count / 3) * item.price;
+      savingMoney += cartItem.toSavingMoney();
     }
-    totalMoney += item.price * cartItem.payCount;
+    totalMoney += cartItem.toTotalMoney();
   });
 
   return '总计：' + totalMoney.toFixed(2) + '(元)\n' + '节省：' +

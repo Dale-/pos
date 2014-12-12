@@ -23,6 +23,14 @@ CartItem.prototype.toPromotionText = function() {
          Math.floor(this.count / 3) + this.item.unit + '\n';
 };
 
+CartItem.prototype.toSavingMoney = function() {
+  return Math.floor(this.count / 3) * this.item.price;
+};
+
+CartItem.prototype.toTotalMoney = function() {
+  return this.item.price * this.payCount;
+};
+
 CartItem.prototype.getBarcode = function() {
   return this.item.barcode;
 };
