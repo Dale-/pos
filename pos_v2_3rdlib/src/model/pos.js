@@ -34,27 +34,12 @@ Pos.prototype.getPromotionText = function(cartItems) {
   return promotionText;
 };
 
-Pos.prototype.getTotalAndSavingText = function(cartItems) {
-  var totalMoney = 0;
-  var savingMoney = 0;
-
-  _.forEach(cartItems, function(cartItem) {
-    if(cartItem.promotionType) {
-      savingMoney += cartItem.toSavingMoney();
-    }
-    totalMoney += cartItem.toTotalMoney();
-  });
-
-  return '总计：' + Util.toFixed(totalMoney) + '(元)\n' + '节省：' +
-         Util.toFixed(savingMoney) + '(元)\n';
-};
-
-Pos.prototype.joinText = function(cartItems) {
-  this.setPayCount(cartItems);
+Pos.prototype.joinText = function(cart) {
+  this.setPayCount(cart.cartItems);
   var currentTimeText = '打印时间：' + Util.TimeHelper() + '\n';
 
   return this.firstLine + currentTimeText + this.splitLine +
-         this.getInventoryText(cartItems) + this.splitLine +
-         this.getPromotionText(cartItems) + this.splitLine +
-         this.getTotalAndSavingText(cartItems) + this.lastLIne;
+         this.getInventoryText(cart.cartItems) + this.splitLine +
+         this.getPromotionText(cart.cartItems) + this.splitLine +
+         cart.toTotalAndSavingText() + this.lastLIne;
 };

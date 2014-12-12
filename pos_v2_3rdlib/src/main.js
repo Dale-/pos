@@ -6,5 +6,5 @@ function printInventory(tags) {
   });
 
   var pos = new Pos();
-  console.log(pos.joinText(cart.cartItems));
+  console.log(pos.joinText(cart));
 }
