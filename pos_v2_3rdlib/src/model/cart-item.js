@@ -5,7 +5,7 @@ function CartItem(item, count, promotionType) {
   this.payCount = 0;
 }
 
-CartItem.prototype.getPayCount = function () {
+CartItem.prototype.getPayCount = function() {
   this.payCount = this.count;
   if(this.promotionType === 'BUY_TWO_GET_ONE_FREE') {
     this.payCount = this.payCount - Math.floor(this.payCount / 3);

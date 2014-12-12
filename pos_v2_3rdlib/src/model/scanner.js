@@ -4,6 +4,7 @@ function Scanner(){
 Scanner.prototype.getTagCount = function(tagCount) {
   var count = 1;
   var hasCount = !!tagCount;
+  
   if(hasCount) {
     count = parseFloat(tagCount);
   }

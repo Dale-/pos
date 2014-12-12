@@ -1,5 +1,5 @@
 function Cart() {
-   this.cartItems = [];
+  this.cartItems = [];
 }
 
 Cart.prototype.findCartItem = function(barcode) {
@@ -46,7 +46,6 @@ Cart.prototype.getPromotionText = function() {
       promotionText += cartItem.toPromotionText();
     }
   });
-
   return promotionText;
 };
 
@@ -62,5 +61,5 @@ Cart.prototype.getTotalAndSavingText = function() {
   });
 
   return '总计：' + Util.toFixed(totalMoney) + '(元)\n' + '节省：' +
-  Util.toFixed(savingMoney) + '(元)\n';
+         Util.toFixed(savingMoney) + '(元)\n';
 };
