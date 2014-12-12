@@ -1,13 +1,13 @@
-function CartItem(item, count, isPromotion) {
+function CartItem(item, count, promotionType) {
   this.item = item;
   this.count = count || 0;
-  this.isPromotion = isPromotion;
+  this.promotionType = promotionType;
   this.payCount = 0;
 }
 
 CartItem.prototype.getPayCount = function () {
   this.payCount = this.count;
-  if(this.isPromotion) {
+  if(this.promotionType === 'BUY_TWO_GET_ONE_FREE') {
     this.payCount = this.payCount - Math.floor(this.payCount / 3);
   }
 };
@@ -20,11 +20,11 @@ CartItem.prototype.toInventoryText = function() {
 
 CartItem.prototype.toPromotionText = function() {
   return '名称：' + this.item.name + '，数量：' +
-         Math.floor(this.count / 3) + this.item.unit + '\n';
+         (this.count - this.payCount) + this.item.unit + '\n';
 };
 
 CartItem.prototype.toSavingMoney = function() {
-  return Math.floor(this.count / 3) * this.item.price;
+  return (this.count - this.payCount) * this.item.price;
 };
 
 CartItem.prototype.toTotalMoney = function() {

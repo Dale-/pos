@@ -11,8 +11,8 @@ Cart.prototype.addCartItem = function(newCartItem) {
   if(cartItem) {
     cartItem.count += newCartItem.count;
   }else {
-    newCartItem.isPromotion =
-                Promotion.isPromotionBarcode(newCartItem.item.barcode);
+    newCartItem.promotionType =
+                Promotion.getPromotionType(newCartItem.item.barcode);
     this.cartItems.push(newCartItem);
   }
 };

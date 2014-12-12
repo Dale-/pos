@@ -26,7 +26,7 @@ Pos.prototype.getPromotionText = function(cartItems) {
   var promotionText = '挥泪赠送商品：\n';
 
   _.forEach(cartItems, function(cartItem) {
-    if(cartItem.isPromotion) {
+    if(cartItem.promotionType) {
       promotionText += cartItem.toPromotionText();
     }
   });
@@ -39,7 +39,7 @@ Pos.prototype.getTotalAndSavingText = function(cartItems) {
   var savingMoney = 0;
 
   _.forEach(cartItems, function(cartItem) {
-    if(cartItem.isPromotion) {
+    if(cartItem.promotionType) {
       savingMoney += cartItem.toSavingMoney();
     }
     totalMoney += cartItem.toTotalMoney();
