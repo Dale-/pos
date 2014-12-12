@@ -7,8 +7,8 @@ function Pos(cartItems) {
 }
 
 Pos.prototype.setPayCount = function() {
-  var cartItems = this.cartItems;
-  _.forEach(cartItems, function(cartItem){
+  
+  _.forEach(this.cartItems, function(cartItem){
     cartItem.getPayCount();
   });
 };
