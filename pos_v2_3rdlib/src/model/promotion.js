@@ -4,7 +4,7 @@ function Promotion(type, barcodes) {
 }
 
 Promotion.isPromotionBarcode = function(barcode) {
-  var isPromotionBarcode ;
+  var isPromotionBarcode = false;
   var promotions = loadPromotions();
 
   _.forEach(promotions, function(promotion) {
