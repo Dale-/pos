@@ -16,13 +16,9 @@ Pos.prototype.setPayCount = function() {
 
 Pos.prototype.getInventoryText = function() {
   var inventoryText = '';
-  var cartItems = this.cartItems;
 
-  _.forEach(cartItems, function(cartItem) {
-    var item = cartItem.item;
-    inventoryText += '名称：' + item.name +'，数量：' + cartItem.count + item.unit+
-                     '，单价：' + item.price.toFixed(2) +  '(元)，小计：' +
-                     (item.price * cartItem.payCount).toFixed(2) + '(元)\n';
+  _.forEach(this.cartItems, function(cartItem) {
+    inventoryText += cartItem.toInventoryText();
   });
 
   return inventoryText;
@@ -30,13 +26,10 @@ Pos.prototype.getInventoryText = function() {
 
 Pos.prototype.getPromotionText = function() {
   var promotionText = '挥泪赠送商品：\n';
-  var cartItems = this.cartItems;
 
-  _.forEach(cartItems, function(cartItem) {
-    var item = cartItem.item;
+  _.forEach(this.cartItems, function(cartItem) {
     if(cartItem.isPromotion) {
-      promotionText += '名称：' + item.name + '，数量：' +
-                       Math.floor(cartItem.count / 3) + item.unit + '\n';
+      promotionText += cartItem.toPromotionText();
     }
   });
 
@@ -46,9 +39,8 @@ Pos.prototype.getPromotionText = function() {
 Pos.prototype.getTotalAndSavingText = function() {
   var totalMoney = 0;
   var savingMoney = 0;
-  var cartItems = this.cartItems;
 
-  _.forEach(cartItems, function(cartItem) {
+  _.forEach(this.cartItems, function(cartItem) {
     var item = cartItem.item;
     if(cartItem.isPromotion) {
       savingMoney += Math.floor(cartItem.count / 3) * item.price;

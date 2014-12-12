@@ -4,9 +4,11 @@ function Scanner(){
 
 Scanner.prototype.scan = function(tag) {
   var splitedArray = tag.split('-');
-  barcode = splitedArray[0];
-  count = 1;
-  if(splitedArray[1]) {
+  var barcode = splitedArray[0];
+  var count = 1;
+
+  var hasCount = !!splitedArray[1];
+  if(hasCount) {
     count = parseFloat(splitedArray[1]);
   }
 
