@@ -1,5 +1,4 @@
 function Scanner(){
-
 }
 
 Scanner.prototype.scan = function(tag) {

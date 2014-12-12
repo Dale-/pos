@@ -53,8 +53,7 @@ Pos.prototype.getTotalAndSavingText = function() {
 
 Pos.prototype.joinText = function() {
   this.setPayCount();
-  var currentTime = new CurrentTime();
-  var currentTimeText = currentTime.getCurrentTimeText();
+  var currentTimeText = '打印时间：' + Util.TimeHelper() + '\n';
 
   return this.firstLine + currentTimeText + this.splitLine +
          this.getInventoryText() + this.splitLine + this.getPromotionText() +
