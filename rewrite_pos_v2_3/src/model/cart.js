@@ -51,7 +51,7 @@ Cart.prototype.getSavingMoney = function() {
 
 Cart.prototype.toString = function() {
   return '***<没钱赚商店>购物清单***\n' +
-         '打印时间：' + moment().format('YYYY年MM月DD日 HH:mm:ss') + '\n' +
+         '打印时间：' + Util.toTime() + '\n' +
          '----------------------\n' +
          this.getInventoryText() +
          '----------------------\n' +
