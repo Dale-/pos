@@ -36,7 +36,7 @@ Cart.prototype.getTotalAmount = function() {
   _.forEach(this.cartItems, function(cartItem) {
     totalAmount += cartItem.getSubtotal();
   });
-  return totalAmount.toFixed(2);
+  return Util.toFixed(totalAmount);
 };
 
 Cart.prototype.getSavingMoney = function() {
@@ -46,7 +46,7 @@ Cart.prototype.getSavingMoney = function() {
       savingMoney += cartItem.promotionPrice;
     }
   });
-  return savingMoney.toFixed(2);
+  return Util.toFixed(savingMoney);
 };
 
 Cart.prototype.toString = function() {
