@@ -7,7 +7,5 @@ function printInventory(tags) {
     cart.addCartItem(cartItem);
   });
 
-  PromotionCalculate.calculateCartItems(cart.cartItems, Promotion.all());
-  
-  console.log(cart.toString());
+  console.log(cart.toString(cart));
 }
