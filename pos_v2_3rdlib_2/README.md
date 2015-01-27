@@ -1,4 +1,4 @@
-# POS Project v2
+# POS Project rewrite v2 
 
 POS收银机 版本：v2
 
