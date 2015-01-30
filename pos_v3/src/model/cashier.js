@@ -1,0 +1,16 @@
+var _ = require('lodash');
+var Cart = require('./cart');
+
+function Cashier() {
+
+}
+
+Cashier.transfer = function(tags) {
+  var cart = new Cart();
+  _.forEach(tags, function(tag) {
+    cart.addCartItem(tag);
+  });
+  return cart.cartItems;
+};
+
+module.exports = Cashier;
