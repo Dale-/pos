@@ -11,7 +11,7 @@ Cart.prototype.addCartItem = function(tag) {
     var item = _.find(Item.all(), {barcode: key});
     this.cartItems.push(new CartItem(item, tag[key]));
   }
-  return this.cartItem;
+  return this.cartItems;
 };
 
 module.exports = Cart;
