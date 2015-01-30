@@ -1,5 +1,8 @@
-function Item() {
-
+function Item(barcode, name, unit, price, brand) {
+    this.barcode = barcode;
+    this.name = name;
+    this.price = price;
+    this.brand = brand;
 }
 
 Item.all = function() {
