@@ -5,10 +5,10 @@ function Cashier() {
 
 }
 
-Cashier.transfer = function(tags) {
+Cashier.transfer = function(collections) {
   var cart = new Cart();
-  _.forEach(tags, function(tag) {
-    cart.addCartItem(tag);
+  _.forEach(collections, function(collection) {
+    cart.addCartItem(collection);
   });
   return cart.cartItems;
 };
