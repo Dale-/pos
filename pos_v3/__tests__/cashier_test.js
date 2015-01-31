@@ -1,5 +1,7 @@
 jest.dontMock('lodash');
 jest.dontMock('../src/model/cart');
+jest.dontMock('../src/model/item');
+jest.dontMock('../src/model/cartItem');
 jest.dontMock('../src/model/cashier');
 
 describe('Cashier', function() {
@@ -10,14 +12,14 @@ describe('Cashier', function() {
         Cashier = require('../src/model/cashier');
     });
 
-    describe('#transfer', function() {
+    describe('.transfer', function() {
         it('should return whole cart.cartItems', function() {
-            var collections = [[
+            var collections = [
                                 { 'ITEM000000' : 20 },
                                 { 'ITEM000010' : 20 },
                                 { 'ITEM000005' : 30 },
                                 { 'ITEM000003' : 12 }
-                            ]];
+                             ];
             var result = Cashier.transfer(collections);
             expect(result.length).toBe(4);
         });
