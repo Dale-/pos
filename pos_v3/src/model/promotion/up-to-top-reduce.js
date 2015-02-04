@@ -10,7 +10,7 @@ UpToTopReduce.wholeSupermarket = function(cartItems, topNum, savingNum) {
         wholeMoney += cartItem.count * cartItem.getPrice();
     });
     var savingMoney = Math.floor(wholeMoney / topNum) * savingNum;
-    return '满' + topNum + '减' + savingNum + '金额：' + savingMoney.toFixed(2) + '元\n';
+    return '名称：满' + topNum + '减' + savingNum + '，金额：' + savingMoney.toFixed(2) + '元\n';
 };
 
 module.exports = UpToTopReduce;
