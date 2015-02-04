@@ -14,9 +14,23 @@ describe('CartItem', function() {
     });
 
     describe('#getPrice', function() {
-        it('should return price', function() {
+        it('should return correct price', function() {
             var result = cartItem.getPrice();
             expect(result).toBe(3.00);
+        });
+    });
+
+    describe('#getBrand', function() {
+        it('should return correct brand', function() {
+            var result = cartItem.getBrand();
+            expect(result).toBe('可口可乐');
+        });
+    });
+
+    describe('#getName', function() {
+        it('should return correct name', function() {
+            var result = cartItem.getName();
+            expect(result).toBe('可口可乐350ml');
         });
     });
 });
