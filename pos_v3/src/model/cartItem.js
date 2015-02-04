@@ -5,4 +5,8 @@ function CartItem(item, count) {
     this.promotionInfo = '';
 }
 
+CartItem.prototype.getPrice = function() {
+  return this.item.price;
+};
+
 module.exports = CartItem;
