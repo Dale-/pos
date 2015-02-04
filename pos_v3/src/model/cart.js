@@ -1,6 +1,6 @@
 var _ = require('lodash');
 var Item = require('./item');
-var CartItem = require('./cartItem');
+var CartItem = require('./cart-item');
 
 function Cart() {
   this.cartItems = [];

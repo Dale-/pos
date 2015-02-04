@@ -1,7 +1,7 @@
 jest.dontMock('lodash');
 jest.dontMock('../src/model/cart');
 jest.dontMock('../src/model/item');
-jest.dontMock('../src/model/cartItem');
+jest.dontMock('../src/model/cart-item');
 
 describe('Cart', function() {
 
