@@ -10,7 +10,7 @@ Discount.brand = function(cartItems, rate, brand) {
     _.forEach(cartItems, function(cartItem) {
         brandSavingMoney += cartItem.count * cartItem.getPrice() * savingRate;
     });
-    return '名称：' + brand + '品牌打折，金额：' + brandSavingMoney.toFixed(2) + '元';
+    return '名称：' + brand + '品牌打折，金额：' + brandSavingMoney.toFixed(2) + '元\n';
 };
 
 module.exports = Discount;

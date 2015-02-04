@@ -19,7 +19,7 @@ describe('Discount', function() {
         it('should return string of discount information', function() {
             var cartItems = [new CartItem(Item.all()[0], 20), new CartItem(Item.all()[1], 20)];
             var result = Discount.brand(cartItems, 0.9, '可口可乐');
-            expect(result).toBe('名称：可口可乐品牌打折，金额：14.00元');
+            expect(result).toBe('名称：可口可乐品牌打折，金额：14.00元\n');
         });
     });
 });
