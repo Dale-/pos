@@ -5,10 +5,10 @@ function Discount() {
 }
 
 Discount.brand = function(cartItems, rate, brand) {
-    var brandTotalMoney = 0;
+    var brandSavingMoney = 0;
+    var savingRate = 1 - rate;
     _.forEach(cartItems, function(cartItem) {
-        brandTotalMoney += cartItem.count * c
+        brandSavingMoney += cartItem.count * cartItem.getPrice() * savingRate;
     });
-
-
+    return brand + '品牌打折，金额：' + brandSavingMoney.toFixed(2) + '元';
 };
