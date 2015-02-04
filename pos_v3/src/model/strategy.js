@@ -1,6 +1,7 @@
 var _ = require('lodash');
 var Discount = require('./promotion/discount');
 var Promotion = require('./promotion/promotion');
+var UpToTopReduce = require('./promotion/up-to-top-reduce');
 
 function Strategy() {
 }
@@ -8,12 +9,14 @@ function Strategy() {
 Strategy.getStrategy1String = function(cartItems) {
     var promotionInfo = '';
     promotionInfo += Strategy.calculateBrandPromotion(cartItems);
+
     var noPromotionCartItems = Strategy.getNoPromotionCartItems;
-    if(noPromotionCartItems) {
-        promotionInfo += Strategy.calculateItemPromotion(noPromotionCartItems);
-    }
+    promotionInfo += Strategy.calculateItemPromotion(noPromotionCartItems);
+
     noPromotionCartItems = Strategy.getNoPromotionCartItems;
-    
+    promotionInfo += UpToTopReduce.wholeSupermarket(noPromotionCartItems, 100, 3);
+
+    return promotionInfo;
 };
 
 Strategy.getNoPromotionCartItems = function(cartItems) {
