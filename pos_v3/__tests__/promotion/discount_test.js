@@ -1,6 +1,6 @@
 jest.dontMock('lodash');
-jest.dontMock('../src/model/item');
-jest.dontMock('../src/model/cartItem');
+jest.dontMock('../../src/model/item');
+jest.dontMock('../../src/model/cart-item');
 jest.dontMock('../../src/model/promotion/discount');
 
 describe('Discount', function() {
@@ -17,8 +17,9 @@ describe('Discount', function() {
 
     describe('.brand', function() {
         it('should return string of discount information', function() {
-            var result = cart.addCartItem({ 'ITEM000000' : 20 });
-            expect(result[0].item.name).toBe('可口可乐350ml');
+            var cartItems = [new CartItem(Item.all()[0], 20), new CartItem(Item.all()[1], 20)];
+            var result = Discount.brand(cartItems, 0.9, '可口可乐');
+            expect(result).toBe('名称：可口可乐品牌打折，金额：14.00元');
         });
     });
 });
