@@ -8,13 +8,22 @@ function Strategy() {
 Strategy.getStrategy1String = function(cartItems) {
     var promotionInfo = '';
     promotionInfo += Strategy.calculateBrandPromotion(cartItems);
+    var noPromotionCartItems = Strategy.getNoPromotionCartItems;
+    if(noPromotionCartItems) {
+        promotionInfo += Strategy.calculateItemPromotion(noPromotionCartItems);
+    }
+    noPromotionCartItems = Strategy.getNoPromotionCartItems;
+    
+};
+
+Strategy.getNoPromotionCartItems = function(cartItems) {
     var items = [];
     _.forEach(cartItems, function(cartItem) {
-       if(!cartItem.isPromotion) {
-           items.push(cartItem);
-       }
+        if(!cartItem.isPromotion) {
+            items.push(cartItem);
+        }
     });
-
+    return items;
 };
 
 Strategy.calculateBrandPromotion = function(cartItems) {
@@ -36,7 +45,7 @@ Strategy.calculateItemPromotion = function(cartItems) {
     _.forEach(Promotion.items, function(item) {
         var itemCartItems = [];
         _.forEach(cartItems ,function(cartItem) {
-            if(cartItem.getBrand() === item.name) {
+            if(cartItem.getName() === item.name) {
                 itemCartItems.push(cartItem);
             }
         });
