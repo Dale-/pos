@@ -23,6 +23,14 @@ describe('UpToTopReduce', function() {
         });
     });
 
+    describe('.brand', function() {
+        it('should return string of brand discount information', function() {
+            var cartItems = [new CartItem(Item.all()[0], 40), new CartItem(Item.all()[1], 20)];
+            var result = UpToTopReduce.brand(cartItems, 100, 2, '可口可乐');
+            expect(result).toBe('名称：可口可乐品牌满100减2，金额：4.00元\n');
+        });
+    });
+
     describe('.wholeSupermarket', function() {
         it('should return string of wholeSupermarket discount information', function() {
             var cartItems = [new CartItem(Item.all()[0], 40), new CartItem(Item.all()[1], 20)];
