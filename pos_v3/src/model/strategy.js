@@ -51,6 +51,16 @@ Strategy.getNoPromotionCartItems = function(cartItems) {
     return items;
 };
 
+Strategy.getBrandCartItems = function(cartItems, brand) {
+    var brandCartItems = [];
+    _.forEach(cartItems ,function(cartItem) {
+        if(cartItem.getBrand() === brand.name) {
+            brandCartItems.push(cartItem);
+        }
+    });
+    return brandCartItems;
+};
+
 Strategy.calculateTopBrandPromotion = function(cartItems) {
     var brandPromotionInfo = '';
     _.forEach(PromotionUpToTop.brands(), function(brand) {
