@@ -11,20 +11,17 @@ Strategy.getStrategy1String = function(cartItems) {
     promotionInfo += Strategy.calculateBrandPromotion(cartItems);
 
     var noPromotionCartItems = Strategy.getNoPromotionCartItems(cartItems);
-    if(noPromotionCartItems) {
-        promotionInfo += Strategy.calculateItemPromotion(noPromotionCartItems);
-    }
+    promotionInfo += Strategy.calculateItemPromotion(noPromotionCartItems);
+
 
     noPromotionCartItems = Strategy.getNoPromotionCartItems(cartItems);
-    if(noPromotionCartItems) {
-        console.log(noPromotionCartItems);
-        promotionInfo += UpToTopReduce.wholeSupermarket(noPromotionCartItems, 100, 3);
-    }
+    console.log(noPromotionCartItems);
+    promotionInfo += UpToTopReduce.wholeSupermarket(noPromotionCartItems, 100, 3);
 
     return promotionInfo;
 };
 
-Strategy.delAppointedCartItem = function(cartItems, name) {
+Strategy.removeAppointedCartItem = function(cartItems, name) {
     var newCartItems = [];
     _.forEach(cartItems, function(cartItem) {
        if(cartItem.getName() !== name) {

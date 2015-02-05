@@ -47,6 +47,8 @@ describe('Strategy', function() {
         });
     });
 
+    //removeAppointedCartItem
+
     describe('.getStrategy1String', function() {
         it('should return string of Strategy1', function() {
             var result = Strategy.getStrategy1String(cartItems);
