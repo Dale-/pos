@@ -14,9 +14,10 @@ Strategy.getStrategy1String = function(cartItems) {
     promotionInfo += Strategy.calculateItemPromotion(noPromotionCartItems);
 
 
-    noPromotionCartItems = Strategy.getNoPromotionCartItems(cartItems);
-    console.log(noPromotionCartItems);
-    promotionInfo += UpToTopReduce.wholeSupermarket(noPromotionCartItems, 100, 3);
+    var newCartItems = Strategy.removeAppointedCartItem(
+                       Strategy.getNoPromotionCartItems(cartItems), '康师傅方便面');
+
+    promotionInfo += UpToTopReduce.wholeSupermarket(newCartItems, 100, 3);
 
     return promotionInfo;
 };
