@@ -33,14 +33,23 @@ Cart.prototype.getPromotionInfo = function(strategyType) {
   return eval(methodName + '(this.cartItems)');
 };
 
-Cart.prototype.getSavingMoney = function(getSavingMoney) {
+Cart.prototype.getSavingMoney = function(strategyType) {
   var savingMoney = 0;
-  var savings = (this.getPromotionInfo(getSavingMoney)).split('\n');
+  var savings = (this.getPromotionInfo(strategyType)).split('\n');
   savings.pop();
   _.forEach(savings, function(saving) {
     savingMoney += parseFloat(saving.slice(saving.lastIndexOf('：') + 1, saving.indexOf('元')));
   });
   return savingMoney;
+};
+
+Cart.prototype.getSavingInfo = function(strategyType) {
+    return '节省：' + this.getSavingMoney(strategyType).toFixed(2) + '(元)\n';
+};
+
+Cart.prototype.getTotalMoney = function(strategyType) {
+
+    return '节省：' + this.getSavingMoney(strategyType).toFixed(2) + '(元)\n';
 };
 
 Cart.prototype.toString = function(strategyType) {
@@ -50,8 +59,9 @@ Cart.prototype.toString = function(strategyType) {
          this.getListInfo() +
          '\n----------------------\n' + '优惠信息：\n' +
          this.getPromotionInfo(strategyType) +
-         '\n----------------------\n' + this.getTotalMoney() +
-         this.getSavingText(getSavingMoney) +
+         '\n----------------------\n' +
+         this.getTotalMoney() +
+         this.getSavingInfo(getSavingMoney) +
          '**********************\n';
 };
 

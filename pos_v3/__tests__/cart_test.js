@@ -60,4 +60,11 @@ describe('Cart', function() {
             expect(result).toBe(17.00);
         });
     });
+
+    describe('#getSavingInfo', function() {
+        it('should return string of savingInfo', function() {
+            var result = cart.getSavingInfo('1');
+            expect(result).toBe('节省：17.00(元)\n');
+        });
+    });
 });
