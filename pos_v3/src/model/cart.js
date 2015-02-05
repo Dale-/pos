@@ -60,11 +60,11 @@ Cart.prototype.getTotalInfo = function(strategyType) {
 Cart.prototype.toString = function(strategyType) {
   return '***<没钱赚商店>购物清单***\n' + '打印时间：' +
          moment().format('YYYY年MM月DD日 HH:mm:ss') +
-         '\n----------------------\n' +
+         '\n\n----------------------\n' +
          this.getListInfo() +
-         '----------------------\n' + '优惠信息：\n' +
+         '\n----------------------\n' + '优惠信息：\n' +
          this.getPromotionInfo(strategyType) +
-         '----------------------\n' +
+         '\n----------------------\n' +
          this.getTotalInfo(strategyType) +
          this.getSavingInfo(strategyType) +
          '**********************\n';

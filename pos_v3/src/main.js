@@ -1,6 +1,5 @@
+var Cart = require('./model/cart');
 var Cashier = require('./model/cashier');
-
-
 
 (function printInventory() {
 
@@ -10,6 +9,9 @@ var Cashier = require('./model/cashier');
     { 'ITEM000005' : 30 },
     { 'ITEM000003' : 12 }
   ];
+  var strategyType = '1';
 
-  console.log(Cashier.transfer(collections));
+  var cart = new Cart();
+  cart.cartItems = Cashier.transfer(collections);
+  console.log(cart.toString(strategyType));
 })();
