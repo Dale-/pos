@@ -79,14 +79,27 @@ Strategy.calculateBrandPromotion = function(cartItems) {
     return brandPromotionInfo;
 };
 
-Strategy.calculateItemPromotion = function(cartItems) {
+Strategy.calculateTopItemPromotion = function(cartItems) {
     var itemPromotionInfo = '';
     _.forEach(Promotion.items(), function(item) {
         _.forEach(cartItems ,function(cartItem) {
             if(cartItem.getName() === item.name) {
-                itemPromotionInfo += Discount.item(cartItem, item.rate);
+                itemPromotionInfo += UpToTopReduce.item(cartItem, item.top, item.saving);
             }
         });
+    });
+    return itemPromotionInfo;
+};
+
+Strategy.calculateItemPromotion = function(cartItems) {
+    var itemPromotionInfo = '';
+    _.forEach(Promotion.items(), function(item) {
+       var cartItem =  _.find(cartItems ,function(cartItem) {
+            return cartItem.getName() === item.name;
+        });
+        if(cartItem) {
+            itemPromotionInfo += Discount.item(cartItem, item.rate);
+        }
     });
     return itemPromotionInfo;
 };
