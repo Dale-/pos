@@ -14,3 +14,5 @@ Promotion.items = function() {
         new Promotion('可口可乐350ml', 0.95)
     ];
 };
+
+module.exports = Promotion;

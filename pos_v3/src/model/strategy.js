@@ -31,7 +31,7 @@ Strategy.getNoPromotionCartItems = function(cartItems) {
 
 Strategy.calculateBrandPromotion = function(cartItems) {
     var brandPromotionInfo = '';
-    _.forEach(Promotion.brands, function(brand) {
+    _.forEach(Promotion.brands(), function(brand) {
         var brandCartItems = [];
         _.forEach(cartItems ,function(cartItem) {
             if(cartItem.getBrand() === brand.name) {
@@ -45,14 +45,14 @@ Strategy.calculateBrandPromotion = function(cartItems) {
 
 Strategy.calculateItemPromotion = function(cartItems) {
     var itemPromotionInfo = '';
-    _.forEach(Promotion.items, function(item) {
+    _.forEach(Promotion.items(), function(item) {
         var itemCartItems = [];
         _.forEach(cartItems ,function(cartItem) {
             if(cartItem.getName() === item.name) {
                 itemCartItems.push(cartItem);
             }
         });
-        itemPromotionInfo += Discount.brand(brandCartItems, brand.rate, brand.name);
+        itemPromotionInfo += Discount.brand(itemCartItems, item.rate, item.name);
     });
     return itemPromotionInfo;
 };
