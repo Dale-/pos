@@ -38,4 +38,13 @@ describe('Strategy', function() {
             expect(result).toBe('名称：可口可乐350ml单品打折，金额：3.00元\n');
         });
     });
+
+    describe('.getNoPromotionCartItems', function() {
+        it('should return object of noPromotionCartItems', function() {
+            cartItems[0].isPromotion = true;
+            var result = Strategy.getNoPromotionCartItems(cartItems);
+            expect(result.length).toBe(3);
+        });
+    });
+
 });
