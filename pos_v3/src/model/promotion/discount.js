@@ -10,9 +10,11 @@ Discount.brand = function(cartItems, rate, brand) {
     _.forEach(cartItems, function(cartItem) {
         cartItem.isPromotion = true;
         if(cartItem.subPromotionTotal) {
-            brandSavingMoney += cartItem.subPromotionTotalgi * savingRate;
+            brandSavingMoney += cartItem.subPromotionTotal * savingRate;
+            cartItem.subPromotionTotal *= rate;
         } else {
             brandSavingMoney += cartItem.count * cartItem.getPrice() * savingRate;
+            cartItem.subPromotionTotal = cartItem.count * cartItem.getPrice() - brandSavingMoney;
         }
     });
     return '名称：' + brand + '品牌打折，金额：' + brandSavingMoney.toFixed(2) + '元\n';

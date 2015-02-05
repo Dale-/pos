@@ -8,24 +8,21 @@ function Strategy() {
 }
 
 Strategy.getStrategy1String = function(cartItems) {
-    var promotionInfo = '';
-    promotionInfo += Strategy.calculateBrandPromotion(cartItems);
-
+    var promotionInfo = Strategy.calculateBrandPromotion(cartItems);
     var noPromotionCartItems = Strategy.getNoPromotionCartItems(cartItems);
     promotionInfo += Strategy.calculateItemPromotion(noPromotionCartItems);
 
     var newCartItems = Strategy.removeAppointedCartItem(
                        Strategy.getNoPromotionCartItems(cartItems), '康师傅方便面');
-
     promotionInfo += UpToTopReduce.wholeSupermarket(newCartItems, 100, 3);
+
     return promotionInfo;
 };
 
 Strategy.getStrategy2String = function(cartItems) {
-    var promotionInfo = '';
-    promotionInfo += Strategy.calculateItemPromotion(cartItems);
-
+    var promotionInfo = Strategy.calculateItemPromotion(cartItems);
     var noPromotionCartItems = Strategy.getNoPromotionCartItems(cartItems);
+
     promotionInfo += Strategy.calculateBrandPromotion(noPromotionCartItems);
     promotionInfo += Strategy.calculateTopBrandPromotion(cartItems);
     promotionInfo += Strategy.calculateTopItemPromotion(cartItems);
@@ -34,13 +31,13 @@ Strategy.getStrategy2String = function(cartItems) {
 };
 
 Strategy.getStrategy3String = function(cartItems) {
-    var promotionInfo = '';
-    promotionInfo += Strategy.calculateItemPromotion(cartItems);
-    promotionInfo += Strategy.calculateTopItemPromotion(cartItems);
-
+    var promotionInfo = Strategy.calculateItemPromotion(cartItems);
+    console.log(cartItems);
     promotionInfo += Strategy.calculateBrandPromotion(cartItems);
+    console.log(cartItems);
     promotionInfo += Strategy.calculateTopBrandPromotion(cartItems);
-
+    var newCartItems = Strategy.removeAppointedCartItem(cartItems, '云山苹果');
+    promotionInfo += UpToTopReduce.wholeSupermarket(newCartItems, 100, 5);
 
     return promotionInfo;
 };
