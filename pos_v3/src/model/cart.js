@@ -21,6 +21,7 @@ Cart.prototype.getListInfo = function() {
   _.forEach(cartItems, function(cartItem) {
     listText += cartItem.toListText();
   });
+  return listText;
 };
 
 Cart.prototype.toString = function() {
