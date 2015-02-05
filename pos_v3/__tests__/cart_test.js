@@ -1,7 +1,12 @@
 jest.dontMock('lodash');
 jest.dontMock('../src/model/cart');
 jest.dontMock('../src/model/item');
+jest.dontMock('../src/model/strategy');
 jest.dontMock('../src/model/cart-item');
+jest.dontMock('../src/model/promotion/discount');
+jest.dontMock('../src/model/promotion/promotion');
+jest.dontMock('../src/model/promotion/up-to-top-reduce');
+
 
 describe('Cart', function() {
 
@@ -38,6 +43,14 @@ describe('Cart', function() {
                                 '名称：可口可乐550ml，数量：20瓶，单价：4.00(元)，小计：80.00(元)\n' +
                                 '名称：康师傅方便面，数量：30袋，单价：4.50(元)，小计：135.00(元)\n' +
                                 '名称：云山荔枝，数量：12斤，单价：15.00(元)，小计：180.00(元)\n');
+        });
+    });
+
+    describe('#getPromotionInfo', function() {
+        it('should return correct string of promotion', function() {
+            var result = cart.getPromotionInfo('1');
+            expect(result).toBe('名称：可口可乐品牌打折，金额：14.00元\n' +
+                                '名称：满100减3，金额：3.00元\n');
         });
     });
 

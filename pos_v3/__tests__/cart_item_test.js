@@ -40,7 +40,7 @@ describe('CartItem', function() {
             expect(result).toBe('瓶');
         });
     });
-    //toListText
+
     describe('#toListText', function() {
         it('should return correct string of listText', function() {
             var result = cartItem.toListText();
