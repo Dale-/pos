@@ -14,12 +14,20 @@ UpToTopReduce.item = function(cartItem, topNum, savingNum) {
 
 UpToTopReduce.brand = function(cartItems, topNum, savingNum, brand) {
     var brandMoney = this.calculateSavingMoney(cartItems, topNum, savingNum);
+    UpToTopReduce.setBrandSubPromotion(cartItems, brandMoney);
     return '名称：' + brand + '品牌满' + topNum + '减' + savingNum +'，金额：' + brandMoney.toFixed(2) + '元\n';
 };
 
 UpToTopReduce.wholeSupermarket = function(cartItems, topNum, savingNum) {
     var savingMoney = this.calculateSavingMoney(cartItems, topNum, savingNum);
     return '名称：满' + topNum + '减' + savingNum + '，金额：' + savingMoney.toFixed(2) + '元\n';
+};
+
+UpToTopReduce.setBrandSubPromotion = function(cartItems, brandMoney) {
+    var subPromotionMoney = brandMoney / (cartItems.length);
+    _.forEach(cartItems, function(cartItem) {
+        cartItem.subPromotionTotal = cartItem.getPrice() * cartItem.count - subPromotionMoney;
+    });
 };
 
 UpToTopReduce.calculateSavingMoney = function(cartItems, topNum, savingNum) {

@@ -24,22 +24,55 @@ Strategy.getStrategy2String = function(cartItems) {
     var noPromotionCartItems = Strategy.getNoPromotionCartItems(cartItems);
 
     promotionInfo += Strategy.calculateBrandPromotion(noPromotionCartItems);
-    promotionInfo += Strategy.calculateTopBrandPromotion(cartItems);
-    promotionInfo += Strategy.calculateTopItemPromotion(cartItems);
+    promotionInfo += Strategy.calculateTopBrandPromotion(cartItems, 0);
+    promotionInfo += Strategy.calculateTopItemPromotion(cartItems, 0);
 
     return promotionInfo;
 };
 
 Strategy.getStrategy3String = function(cartItems) {
     var promotionInfo = Strategy.calculateItemPromotion(cartItems);
-    console.log(cartItems);
     promotionInfo += Strategy.calculateBrandPromotion(cartItems);
-    console.log(cartItems);
-    promotionInfo += Strategy.calculateTopBrandPromotion(cartItems);
+    promotionInfo += Strategy.calculateTopBrandPromotion(cartItems, 0);
+
     var newCartItems = Strategy.removeAppointedCartItem(cartItems, '云山苹果');
     promotionInfo += UpToTopReduce.wholeSupermarket(newCartItems, 100, 5);
 
     return promotionInfo;
+};
+
+Strategy.getStrategy4String = function(cartItems) {
+    var promotionInfo = Strategy.calculateItemPromotion(cartItems);
+    Strategy.removeSubTotal(cartItems, 0);
+    promotionInfo += Strategy.calculateBrandPromotion(cartItems);
+    Strategy.recoverSubTotal(cartItems, 0);
+    promotionInfo += Strategy.calculateTopItemPromotion(cartItems, 1);
+    promotionInfo += Strategy.calculateTopBrandPromotion(cartItems, 1);
+
+    var newCartItems = Strategy.removeAppointedCartItem(cartItems, '雪碧');
+    promotionInfo += Discount.wholeSupermarket(newCartItems, 0.9);
+
+    return promotionInfo;
+};
+
+Strategy.removeSubTotal = function(cartItems, brandNum) {
+    var brand = Promotion.brands()[brandNum];
+    _.forEach(cartItems, function(cartItem) {
+        if(cartItem.subPromotionTotal && cartItem.getBrand() === brand.name) {
+            cartItem.subPromotionTotal = 0;
+        }
+    });
+};
+
+Strategy.recoverSubTotal = function(cartItems, itemNum) {
+    var item = Promotion.items()[itemNum];
+    _.forEach(cartItems, function(cartItem) {
+        if(cartItem.subPromotionTotal && cartItem.getName() === item.name) {
+            var itemPromotionTotal = cartItem.getPrice() * cartItem.count * (1 - item.rate);
+            cartItem.subPromotionTotal -= itemPromotionTotal;
+            //console.log(cartItem.subPromotionTotal);
+        }
+    });
 };
 
 Strategy.removeAppointedCartItem = function(cartItems, name) {
@@ -79,12 +112,12 @@ Strategy.getItemCartItem = function(cartItems, item) {
     return cartItem;
 };
 
-Strategy.calculateTopBrandPromotion = function(cartItems) {
+Strategy.calculateTopBrandPromotion = function(cartItems, brandNum) {
     var brandPromotionInfo = '';
-    _.forEach(PromotionUpToTop.brands(), function(brand) {
-        var brandCartItems = Strategy.getBrandCartItems(cartItems, brand);
-        brandPromotionInfo += UpToTopReduce.brand(brandCartItems, brand.top, brand.saving, brand.name);
-    });
+    var brand = PromotionUpToTop.brands()[brandNum];
+    var brandCartItems = Strategy.getBrandCartItems(cartItems, brand);
+    brandPromotionInfo += UpToTopReduce.brand(brandCartItems, brand.top, brand.saving, brand.name);
+
     return brandPromotionInfo;
 };
 
@@ -97,14 +130,13 @@ Strategy.calculateBrandPromotion = function(cartItems) {
     return brandPromotionInfo;
 };
 
-Strategy.calculateTopItemPromotion = function(cartItems) {
+Strategy.calculateTopItemPromotion = function(cartItems, itemNum) {
     var itemPromotionInfo = '';
-    _.forEach(PromotionUpToTop.items(), function(item) {
-        var cartItem = Strategy.getItemCartItem(cartItems, item);
-        if(cartItem) {
-            itemPromotionInfo += UpToTopReduce.item(cartItem, item.top, item.saving);
-        }
-    });
+    var item = PromotionUpToTop.items()[itemNum];
+    var cartItem = Strategy.getItemCartItem(cartItems, item);
+    if(cartItem) {
+        itemPromotionInfo += UpToTopReduce.item(cartItem, item.top, item.saving);
+    }
     return itemPromotionInfo;
 };
 
