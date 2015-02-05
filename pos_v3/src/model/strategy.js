@@ -46,13 +46,11 @@ Strategy.calculateBrandPromotion = function(cartItems) {
 Strategy.calculateItemPromotion = function(cartItems) {
     var itemPromotionInfo = '';
     _.forEach(Promotion.items(), function(item) {
-        var itemCartItems = [];
         _.forEach(cartItems ,function(cartItem) {
             if(cartItem.getName() === item.name) {
-                itemCartItems.push(cartItem);
+                itemPromotionInfo += Discount.item(cartItem, item.rate);
             }
         });
-        itemPromotionInfo += Discount.brand(itemCartItems, item.rate, item.name);
     });
     return itemPromotionInfo;
 };
