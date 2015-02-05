@@ -2,6 +2,7 @@ var _ = require('lodash');
 var Discount = require('./promotion/discount');
 var Promotion = require('./promotion/promotion');
 var UpToTopReduce = require('./promotion/up-to-top-reduce');
+var PromotionUpToTop = require('./promotion/promotion_up_to_top');
 
 function Strategy() {
 }
@@ -13,12 +14,10 @@ Strategy.getStrategy1String = function(cartItems) {
     var noPromotionCartItems = Strategy.getNoPromotionCartItems(cartItems);
     promotionInfo += Strategy.calculateItemPromotion(noPromotionCartItems);
 
-
     var newCartItems = Strategy.removeAppointedCartItem(
                        Strategy.getNoPromotionCartItems(cartItems), '康师傅方便面');
 
     promotionInfo += UpToTopReduce.wholeSupermarket(newCartItems, 100, 3);
-
     return promotionInfo;
 };
 
@@ -50,6 +49,20 @@ Strategy.getNoPromotionCartItems = function(cartItems) {
         }
     });
     return items;
+};
+
+Strategy.calculateTopBrandPromotion = function(cartItems) {
+    var brandPromotionInfo = '';
+    _.forEach(PromotionUpToTop.brands(), function(brand) {
+        var brandCartItems = [];
+        _.forEach(cartItems ,function(cartItem) {
+            if(cartItem.getBrand() === brand.name) {
+                brandCartItems.push(cartItem);
+            }
+        });
+        brandPromotionInfo += Discount.brand(brandCartItems, brand.top, brand.saving, brand.name);
+    });
+    return brandPromotionInfo;
 };
 
 Strategy.calculateBrandPromotion = function(cartItems) {
