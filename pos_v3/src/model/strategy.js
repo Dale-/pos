@@ -22,6 +22,16 @@ Strategy.getStrategy1String = function(cartItems) {
     return promotionInfo;
 };
 
+Strategy.getStrategy2String = function(cartItems) {
+    var promotionInfo = '';
+    promotionInfo += Strategy.calculateItemPromotion(cartItems);
+
+    var noPromotionCartItems = Strategy.getNoPromotionCartItems(cartItems);
+    promotionInfo += Strategy.calculateBrandPromotion(noPromotionCartItems);
+
+    return promotionInfo;
+};
+
 Strategy.removeAppointedCartItem = function(cartItems, name) {
     var newCartItems = [];
     _.forEach(cartItems, function(cartItem) {
