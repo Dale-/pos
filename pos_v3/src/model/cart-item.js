@@ -2,8 +2,6 @@ function CartItem(item, count) {
     this.item = item;
     this.count = count;
     this.isPromotion = false;
-    //this.promotionPrice = 0;
-    //this.promotionInfo = '';
 }
 
 CartItem.prototype.getPrice = function() {
@@ -17,5 +15,16 @@ CartItem.prototype.getBrand = function() {
 CartItem.prototype.getName = function() {
     return this.item.name;
 };
+
+CartItem.prototype.getUnit = function() {
+    return this.item.unit;
+};
+
+CartItem.prototype.toListText = function() {
+    return '名称：' + this.getName() +'，数量：' + this.count +
+           this.getUnit() +'，单价：' + this.getPrice() + '(元)，小计：'+
+           (this.getPrice() * this.count).toFixed(2) +'(元)\n';
+};
+
 
 module.exports = CartItem;
