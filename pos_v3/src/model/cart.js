@@ -8,7 +8,8 @@ var Promotion = require('./promotion/promotion');
 var UpToTopReduce = require('./promotion/up-to-top-reduce');
 
 function Cart() {
-  this.cartItems = [];
+    this.cartItems = [];
+    this.promotionInfo = '';
 }
 
 Cart.prototype.addCartItem = function(tag) {
@@ -29,13 +30,14 @@ Cart.prototype.getListInfo = function() {
 };
 
 Cart.prototype.getPromotionInfo = function(strategyType) {
-  var methodName = 'Strategy.getStrategy' + strategyType + 'String';
-  return eval(methodName + '(this.cartItems)');
+    var methodName = 'Strategy.getStrategy' + strategyType + 'String';
+    this.promotionInfo = eval(methodName + '(this.cartItems)');
+    return this.promotionInfo;
 };
 
-Cart.prototype.getSavingMoney = function(strategyType) {
+Cart.prototype.getSavingMoney = function() {
   var savingMoney = 0;
-  var savings = (this.getPromotionInfo(strategyType)).split('\n');
+  var savings = (this.promotionInfo).split('\n');
   savings.pop();
   _.forEach(savings, function(saving) {
     savingMoney += parseFloat(saving.slice(saving.lastIndexOf('：') + 1, saving.indexOf('元')));

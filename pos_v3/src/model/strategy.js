@@ -27,6 +27,8 @@ Strategy.getStrategy2String = function(cartItems) {
 
     var noPromotionCartItems = Strategy.getNoPromotionCartItems(cartItems);
     promotionInfo += Strategy.calculateBrandPromotion(noPromotionCartItems);
+    promotionInfo += Strategy.calculateTopBrandPromotion(cartItems);
+    promotionInfo += Strategy.calculateTopItemPromotion(cartItems);
 
     return promotionInfo;
 };
