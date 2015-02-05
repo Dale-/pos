@@ -23,6 +23,14 @@ describe('UpToTopReduce', function() {
         });
     });
 
+    describe('.item', function() {
+        it('should return string of item discount information', function() {
+            var cartItem = new CartItem(Item.all()[0], 40);
+            var result = UpToTopReduce.item(cartItem, 100, 2);
+            expect(result).toBe('名称：可口可乐350ml满100减2，金额：2.00元\n');
+        });
+    });
+
     describe('.brand', function() {
         it('should return string of brand discount information', function() {
             var cartItems = [new CartItem(Item.all()[0], 40), new CartItem(Item.all()[1], 20)];
