@@ -12,7 +12,7 @@ PromotionUpToTop.brands = function() {
 
 PromotionUpToTop.items = function() {
     return [
-        new PromotionUpToTop('可口可乐350ml', 0.95)
+        new PromotionUpToTop('云山荔枝', 100, 5)
     ];
 };
 
