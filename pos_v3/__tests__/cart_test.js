@@ -67,4 +67,11 @@ describe('Cart', function() {
             expect(result).toBe('节省：17.00(元)\n');
         });
     });
+
+    describe('#getTotalInfo', function() {
+        it('should return string of totalInfo', function() {
+            var result = cart.getTotalInfo('1');
+            expect(result).toBe('总计：438.00(元)\n');
+        });
+    });
 });

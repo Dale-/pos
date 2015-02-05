@@ -47,7 +47,7 @@ Cart.prototype.getSavingInfo = function(strategyType) {
     return '节省：' + this.getSavingMoney(strategyType).toFixed(2) + '(元)\n';
 };
 
-Cart.prototype.getTotalMoney = function(strategyType) {
+Cart.prototype.getTotalInfo = function(strategyType) {
     var totalAmount = 0;
     var cartItems = this.cartItems;
     _.forEach(cartItems, function(cartItem) {
@@ -65,7 +65,7 @@ Cart.prototype.toString = function(strategyType) {
          '\n----------------------\n' + '优惠信息：\n' +
          this.getPromotionInfo(strategyType) +
          '\n----------------------\n' +
-         this.getTotalMoney() +
+         this.getTotalInfo() +
          this.getSavingInfo(getSavingMoney) +
          '**********************\n';
 };
