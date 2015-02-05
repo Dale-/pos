@@ -88,12 +88,11 @@ Strategy.calculateBrandPromotion = function(cartItems) {
 
 Strategy.calculateTopItemPromotion = function(cartItems) {
     var itemPromotionInfo = '';
-    _.forEach(Promotion.items(), function(item) {
-        _.forEach(cartItems ,function(cartItem) {
-            if(cartItem.getName() === item.name) {
-                itemPromotionInfo += UpToTopReduce.item(cartItem, item.top, item.saving);
-            }
-        });
+    _.forEach(PromotionUpToTop.items(), function(item) {
+        var cartItem = Strategy.getItemCartItem(cartItems, item);
+        if(cartItem) {
+            itemPromotionInfo += UpToTopReduce.item(cartItem, item.top, item.saving);
+        }
     });
     return itemPromotionInfo;
 };

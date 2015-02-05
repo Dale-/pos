@@ -51,6 +51,14 @@ describe('Strategy', function() {
         });
     });
 
+    describe('.calculateTopItemPromotion', function() {
+        it('should return string of topItemPromotion information', function() {
+            cartItems = [new CartItem(Item.all()[5], 30), new CartItem(Item.all()[8], 25)];
+            var result = Strategy.calculateTopItemPromotion(cartItems);
+            expect(result).toBe('名称：云山荔枝满100减5，金额：20.00元\n');
+        });
+    });
+
     describe('.getNoPromotionCartItems', function() {
         it('should return object of noPromotionCartItems', function() {
             cartItems[0].isPromotion = true;
