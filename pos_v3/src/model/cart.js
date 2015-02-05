@@ -48,8 +48,13 @@ Cart.prototype.getSavingInfo = function(strategyType) {
 };
 
 Cart.prototype.getTotalMoney = function(strategyType) {
-
-    return '节省：' + this.getSavingMoney(strategyType).toFixed(2) + '(元)\n';
+    var totalAmount = 0;
+    var cartItems = this.cartItems;
+    _.forEach(cartItems, function(cartItem) {
+        totalAmount += cartItem.getSubTotal();
+    });
+    totalAmount -= this.getSavingMoney(strategyType);
+    return '总计：' + totalAmount.toFixed(2) + '(元)\n';
 };
 
 Cart.prototype.toString = function(strategyType) {
