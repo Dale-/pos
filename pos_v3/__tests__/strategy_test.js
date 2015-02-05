@@ -5,6 +5,8 @@ jest.dontMock('../src/model/cart-item');
 jest.dontMock('../src/model/promotion/discount');
 jest.dontMock('../src/model/promotion/promotion');
 jest.dontMock('../src/model/promotion/up-to-top-reduce');
+jest.dontMock('../src/model/promotion/promotion_up_to_top');
+
 
 describe('Strategy', function() {
 
@@ -31,6 +33,14 @@ describe('Strategy', function() {
         it('should return string of brandPromotion information', function() {
             var result = Strategy.calculateBrandPromotion(cartItems);
             expect(result).toBe('名称：可口可乐品牌打折，金额：14.00元\n');
+        });
+    });
+
+    describe('.calculateTopBrandPromotion', function() {
+        it('should return string of topBrandPromotion information', function() {
+            cartItems = [new CartItem(Item.all()[7], 30), new CartItem(Item.all()[8], 25)];
+            var result = Strategy.calculateTopBrandPromotion(cartItems);
+            expect(result).toBe('名称：康师傅品牌满100减2，金额：4.00元\n');
         });
     });
 
