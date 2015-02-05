@@ -41,6 +41,13 @@ describe('CartItem', function() {
         });
     });
 
+    describe('#getSubTotal', function() {
+        it('should return float of correct subTotal', function() {
+            var result = cartItem.getSubTotal();
+            expect(result).toBe(60);
+        });
+    });
+
     describe('#toListText', function() {
         it('should return correct string of listText', function() {
             var result = cartItem.toListText();
