@@ -15,6 +15,14 @@ describe('UpToTopReduce', function() {
         UpToTopReduce = require('../../src/model/promotion/up-to-top-reduce');
     });
 
+    describe('.calculateSavingMoney', function() {
+        it('should return number of saving money', function() {
+            var cartItems = [new CartItem(Item.all()[0], 40), new CartItem(Item.all()[1], 20)];
+            var result = UpToTopReduce.calculateSavingMoney(cartItems, 100, 3);
+            expect(result).toBe(6);
+        });
+    });
+
     describe('.wholeSupermarket', function() {
         it('should return string of wholeSupermarket discount information', function() {
             var cartItems = [new CartItem(Item.all()[0], 40), new CartItem(Item.all()[1], 20)];
