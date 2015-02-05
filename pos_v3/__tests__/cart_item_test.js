@@ -33,4 +33,11 @@ describe('CartItem', function() {
             expect(result).toBe('可口可乐350ml');
         });
     });
+
+    describe('#getUnit', function() {
+        it('should return correct unit', function() {
+            var result = cartItem.getUnit();
+            expect(result).toBe('瓶');
+        });
+    });
 });
