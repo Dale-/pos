@@ -47,4 +47,11 @@ describe('Strategy', function() {
         });
     });
 
+    describe('.getStrategy1String', function() {
+        it('should return string of Strategy1', function() {
+            var result = Strategy.getStrategy1String(cartItems);
+            expect(result).toBe('名称：可口可乐品牌打折，金额：14.00元\n' +
+                                '名称：满100减3，金额：3.00元\n');
+        });
+    });
 });
