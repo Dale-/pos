@@ -61,6 +61,13 @@ Strategy.getBrandCartItems = function(cartItems, brand) {
     return brandCartItems;
 };
 
+Strategy.getItemCartItem = function(cartItems, item) {
+    var cartItem =  _.find(cartItems ,function(cartItem) {
+        return cartItem.getName() === item.name;
+    });
+    return cartItem;
+};
+
 Strategy.calculateTopBrandPromotion = function(cartItems) {
     var brandPromotionInfo = '';
     _.forEach(PromotionUpToTop.brands(), function(brand) {
@@ -94,9 +101,7 @@ Strategy.calculateTopItemPromotion = function(cartItems) {
 Strategy.calculateItemPromotion = function(cartItems) {
     var itemPromotionInfo = '';
     _.forEach(Promotion.items(), function(item) {
-       var cartItem =  _.find(cartItems ,function(cartItem) {
-            return cartItem.getName() === item.name;
-        });
+        var cartItem = Strategy.getItemCartItem(cartItems, item);
         if(cartItem) {
             itemPromotionInfo += Discount.item(cartItem, item.rate);
         }
