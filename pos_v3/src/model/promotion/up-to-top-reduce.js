@@ -4,6 +4,12 @@ function UpToTopReduce() {
 
 }
 
+UpToTopReduce.item = function(cartItem, topNum, savingNum) {
+    var itemMoney = cartItem.getPrice() * cartItem.count;
+    var savingMoney = Math.floor(itemMoney / topNum) * savingNum;
+    return '名称：' + cartItem.getName() + '满' + topNum + '减' + savingNum + '，金额：' + savingMoney.toFixed(2) + '元\n';
+};
+
 UpToTopReduce.brand = function(cartItems, topNum, savingNum, brand) {
     var brandMoney = this.calculateSavingMoney(cartItems, topNum, savingNum);
     return '名称：' + brand + '品牌满' + topNum + '减' + savingNum +'，金额：' + brandMoney.toFixed(2) + '元\n';
