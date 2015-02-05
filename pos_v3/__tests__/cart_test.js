@@ -54,4 +54,10 @@ describe('Cart', function() {
         });
     });
 
+    describe('#getSavingMoney', function() {
+        it('should return float of savingMoney', function() {
+            var result = cart.getSavingMoney('1');
+            expect(result).toBe(17.00);
+        });
+    });
 });
