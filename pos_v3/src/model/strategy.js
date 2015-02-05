@@ -33,6 +33,18 @@ Strategy.getStrategy2String = function(cartItems) {
     return promotionInfo;
 };
 
+Strategy.getStrategy3String = function(cartItems) {
+    var promotionInfo = '';
+    promotionInfo += Strategy.calculateItemPromotion(cartItems);
+    promotionInfo += Strategy.calculateTopItemPromotion(cartItems);
+
+    promotionInfo += Strategy.calculateBrandPromotion(cartItems);
+    promotionInfo += Strategy.calculateTopBrandPromotion(cartItems);
+
+
+    return promotionInfo;
+};
+
 Strategy.removeAppointedCartItem = function(cartItems, name) {
     var newCartItems = [];
     _.forEach(cartItems, function(cartItem) {
