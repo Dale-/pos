@@ -21,8 +21,8 @@ CartItem.prototype.getUnit = function() {
 };
 
 CartItem.prototype.toListText = function() {
-    return '名称：' + this.getName() +'，数量：' + this.count +
-           this.getUnit() +'，单价：' + this.getPrice() + '(元)，小计：'+
+    return '名称：' + this.getName() + '，数量：' + this.count + this.getUnit() +
+           '，单价：' + this.getPrice().toFixed(2) + '(元)，小计：'+
            (this.getPrice() * this.count).toFixed(2) +'(元)\n';
 };
 

@@ -61,4 +61,5 @@ describe('Strategy', function() {
                                 '名称：满100减3，金额：3.00元\n');
         });
     });
+
 });

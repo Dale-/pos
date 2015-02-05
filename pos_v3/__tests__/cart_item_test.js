@@ -40,4 +40,11 @@ describe('CartItem', function() {
             expect(result).toBe('瓶');
         });
     });
+    //toListText
+    describe('#toListText', function() {
+        it('should return correct string of listText', function() {
+            var result = cartItem.toListText();
+            expect(result).toBe('名称：可口可乐350ml，数量：20瓶，单价：3.00(元)，小计：60.00(元)\n');
+        });
+    });
 });
