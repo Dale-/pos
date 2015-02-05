@@ -22,4 +22,12 @@ describe('Discount', function() {
             expect(result).toBe('名称：可口可乐品牌打折，金额：14.00元\n');
         });
     });
+
+    describe('.item', function() {
+        it('should return string of discount information', function() {
+            var cartItem = new CartItem(Item.all()[0], 20);
+            var result = Discount.item(cartItem, 0.95);
+            expect(result).toBe('名称：可口可乐350ml单品打折，金额：3.00元\n');
+        });
+    });
 });
