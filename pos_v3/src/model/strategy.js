@@ -64,12 +64,7 @@ Strategy.getBrandCartItems = function(cartItems, brand) {
 Strategy.calculateTopBrandPromotion = function(cartItems) {
     var brandPromotionInfo = '';
     _.forEach(PromotionUpToTop.brands(), function(brand) {
-        var brandCartItems = [];
-        _.forEach(cartItems ,function(cartItem) {
-            if(cartItem.getBrand() === brand.name) {
-                brandCartItems.push(cartItem);
-            }
-        });
+        var brandCartItems = Strategy.getBrandCartItems(cartItems, brand);
         brandPromotionInfo += Discount.brand(brandCartItems, brand.top, brand.saving, brand.name);
     });
     return brandPromotionInfo;
@@ -78,12 +73,7 @@ Strategy.calculateTopBrandPromotion = function(cartItems) {
 Strategy.calculateBrandPromotion = function(cartItems) {
     var brandPromotionInfo = '';
     _.forEach(Promotion.brands(), function(brand) {
-        var brandCartItems = [];
-        _.forEach(cartItems ,function(cartItem) {
-            if(cartItem.getBrand() === brand.name) {
-                brandCartItems.push(cartItem);
-            }
-        });
+        var brandCartItems = Strategy.getBrandCartItems(cartItems, brand);
         brandPromotionInfo += Discount.brand(brandCartItems, brand.rate, brand.name);
     });
     return brandPromotionInfo;

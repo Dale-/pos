@@ -12,11 +12,13 @@ describe('Strategy', function() {
     var CartItem;
     var Strategy;
     var cartItems;
+    var Promotion;
 
     beforeEach(function() {
         Item = require('../src/model/item');
         Strategy = require('../src/model/strategy');
         CartItem = require('../src/model/cart-item');
+        Promotion = require('../src/model/promotion/promotion');
         cartItems = [
                      new CartItem(Item.all()[0], 20),
                      new CartItem(Item.all()[1], 20),
@@ -44,6 +46,13 @@ describe('Strategy', function() {
             cartItems[0].isPromotion = true;
             var result = Strategy.getNoPromotionCartItems(cartItems);
             expect(result.length).toBe(3);
+        });
+    });
+
+    describe('.getBrandCartItems', function() {
+        it('should return object of brandCartItems', function() {
+            var result = Strategy.getBrandCartItems(cartItems, Promotion.brands()[0]);
+            expect(result.length).toBe(2);
         });
     });
 
