@@ -47,7 +47,12 @@ describe('Strategy', function() {
         });
     });
 
-    //removeAppointedCartItem
+    describe('.removeAppointedCartItem', function() {
+        it('should return object of removing appointed CartItem', function() {
+            var result = Strategy.removeAppointedCartItem(cartItems, '可口可乐350ml');
+            expect(result.length).toBe(3);
+        });
+    });
 
     describe('.getStrategy1String', function() {
         it('should return string of Strategy1', function() {
