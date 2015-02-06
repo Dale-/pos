@@ -5,7 +5,7 @@ function Promotion(name, rate) {
 
 Promotion.brands = function() {
     return [
-            new Promotion('可口可乐', 0.9)
+        new Promotion('可口可乐', 0.9)
     ];
 };
 
