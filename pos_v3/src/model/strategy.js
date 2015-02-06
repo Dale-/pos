@@ -116,7 +116,7 @@ Strategy.calculateTopBrandPromotion = function(cartItems, brandNum) {
     var brandPromotionInfo = '';
     var brand = PromotionUpToTop.brands()[brandNum];
     var brandCartItems = Strategy.getBrandCartItems(cartItems, brand);
-    
+
     brandPromotionInfo += UpToTopReduce.brand(brandCartItems, brand.top, brand.saving, brand.name);
     return brandPromotionInfo;
 };
