@@ -46,6 +46,7 @@ Strategy.getStrategy4String = function(cartItems) {
     Strategy.removeSubTotal(cartItems, 0);
     promotionInfo += Strategy.calculateBrandPromotion(cartItems);
     Strategy.recoverSubTotal(cartItems, 0);
+
     promotionInfo += Strategy.calculateTopItemPromotion(cartItems, 1);
     promotionInfo += Strategy.calculateTopBrandPromotion(cartItems, 1);
 
@@ -115,8 +116,8 @@ Strategy.calculateTopBrandPromotion = function(cartItems, brandNum) {
     var brandPromotionInfo = '';
     var brand = PromotionUpToTop.brands()[brandNum];
     var brandCartItems = Strategy.getBrandCartItems(cartItems, brand);
+    
     brandPromotionInfo += UpToTopReduce.brand(brandCartItems, brand.top, brand.saving, brand.name);
-
     return brandPromotionInfo;
 };
 
