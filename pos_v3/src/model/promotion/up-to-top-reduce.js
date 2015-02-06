@@ -39,7 +39,7 @@ UpToTopReduce.calculateSavingMoney = function(cartItems, topNum, savingNum) {
         cartItem.isPromotion = true;
         if(cartItem.subPromotionTotal) {
             money += cartItem.subPromotionTotal;
-        }else {
+        } else {
             money += cartItem.count * cartItem.getPrice();
         }
     });

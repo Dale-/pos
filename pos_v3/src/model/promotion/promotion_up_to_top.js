@@ -7,7 +7,7 @@ function PromotionUpToTop(name, top, saving) {
 PromotionUpToTop.brands = function() {
     return [
         new PromotionUpToTop('康师傅', 100, 2),
-        new PromotionUpToTop('云山', 100, 2),
+        new PromotionUpToTop('云山', 100, 2)
     ];
 };
 
