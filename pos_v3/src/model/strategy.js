@@ -70,7 +70,6 @@ Strategy.recoverSubTotal = function(cartItems, itemNum) {
         if(cartItem.subPromotionTotal && cartItem.getName() === item.name) {
             var itemPromotionTotal = cartItem.getPrice() * cartItem.count * (1 - item.rate);
             cartItem.subPromotionTotal -= itemPromotionTotal;
-            //console.log(cartItem.subPromotionTotal);
         }
     });
 };

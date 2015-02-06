@@ -39,7 +39,7 @@ describe('Strategy', function() {
     describe('.calculateTopBrandPromotion', function() {
         it('should return string of topBrandPromotion information', function() {
             cartItems = [new CartItem(Item.all()[7], 30), new CartItem(Item.all()[8], 25)];
-            var result = Strategy.calculateTopBrandPromotion(cartItems);
+            var result = Strategy.calculateTopBrandPromotion(cartItems, 0);
             expect(result).toBe('名称：康师傅品牌满100减2，金额：4.00元\n');
         });
     });
@@ -54,7 +54,7 @@ describe('Strategy', function() {
     describe('.calculateTopItemPromotion', function() {
         it('should return string of topItemPromotion information', function() {
             cartItems = [new CartItem(Item.all()[5], 30), new CartItem(Item.all()[8], 25)];
-            var result = Strategy.calculateTopItemPromotion(cartItems);
+            var result = Strategy.calculateTopItemPromotion(cartItems, 0);
             expect(result).toBe('名称：云山荔枝满100减5，金额：20.00元\n');
         });
     });
