@@ -6,7 +6,7 @@ function CartItem(item, count) {
 }
 
 CartItem.prototype.getPrice = function() {
-  return this.item.price;
+    return this.item.price;
 };
 
 CartItem.prototype.getBrand = function() {
