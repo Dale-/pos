@@ -1,3 +1,18 @@
-/**
- * Created by dale on 12/03/15.
- */
+var _ = require('lodash');
+var FullReduce = require('./full-reduce');
+
+function Item(fullMoney, reducedMoney, totalMoney, itemName) {
+    FullReduce.call(this, fullMoney, reducedMoney, totalMoney);
+    this.itemName = itemName;
+}
+
+Item.prototype = Object.create(FullReduce.prototype);
+Item.prototype.constructor = Item;
+
+Item.prototype.buildPromotionInfo = function() {
+    return '名称：' + this.brand +
+           '满' + this.fullMoney + '减' + this.reducedMoney + '，' +
+           '金额：' + this.getPromotionMoney() + '元\n';
+};
+
+module.exports = Item;
