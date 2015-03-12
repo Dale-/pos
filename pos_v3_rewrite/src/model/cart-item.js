@@ -5,5 +5,5 @@ function CartItem(item, count) {
 }
 
 CartItem.prototype.getSubTotal = function() {
-    
+
 };
