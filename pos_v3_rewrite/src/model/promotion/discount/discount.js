@@ -1,7 +1,12 @@
+var Promotion = require('../promotion');
+
 function Discount(discountRate, cartItems) {
+    Promotion.call(this, cartItems);
     this.discountRate = discountRate;
-    this.cartItems = cartItems;
 }
+
+Discount.prototype = Object.create(Promotion.prototype);
+Discount.prototype.constructor = Discount;
 
 Discount.prototype.getPromotionMoney = function() {
     return (this.totalMoney * (1 - this.discountRate)).toFixed(2);

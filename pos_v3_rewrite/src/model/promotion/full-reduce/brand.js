@@ -1,8 +1,8 @@
 var _ = require('lodash');
 var FullReduce = require('./full-reduce');
 
-function Brand(fullMoney, reducedMoney, totalMoney, brand) {
-    FullReduce.call(this, fullMoney, reducedMoney, totalMoney);
+function Brand(fullMoney, reducedMoney, totalMoney, brand, cartItems) {
+    FullReduce.call(this, fullMoney, reducedMoney, totalMoney, cartItems);
     this.brand = brand;
 }
 
