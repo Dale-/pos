@@ -13,3 +13,10 @@ Promotion.prototype.getBrandCartItems = function() {
     });
     return brandCartItems;
 };
+
+Promotion.prototype.getCartItem = function() {
+    var cartItem =  _.find(this.cartItems ,function(cartItem) {
+        return cartItem.getName() === this.itemName;
+    });
+    return cartItem;
+};
