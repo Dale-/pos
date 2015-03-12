@@ -1,7 +1,6 @@
 function FullReduce(fullMoney, reducedMoney, totalMoney) {
     this.fullMoney = fullMoney;
     this.reducedMoney = reducedMoney;
-    this.totalMoney = totalMoney;
 }
 
 FullReduce.prototype.getPromotionMoney = function() {
