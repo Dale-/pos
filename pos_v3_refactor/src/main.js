@@ -18,6 +18,8 @@ function run() {
 
 function printInventory(collections, strategyType) {
 
+
+
     var cart = new Cart();
     Cashier.transfer(collections, cart);
     console.log(cart.toString(strategyType));

@@ -7,9 +7,10 @@ var Discount = require('./promotion/discount');
 var Promotion = require('./promotion/promotion');
 var UpToTopReduce = require('./promotion/up-to-top-reduce');
 
-function Cart() {
+function Cart(strategy) {
     this.cartItems = [];
     this.promotionInfo = '';
+    this.strategy = strategy;
 }
 
 Cart.prototype.addCartItem = function(tag) {

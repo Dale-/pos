@@ -6,7 +6,7 @@ function Cashier() {
 }
 
 Cashier.transfer = function(collections, cart) {
-    
+
     _.forEach(collections, function(collection) {
         cart.addCartItem(collection);
     });
