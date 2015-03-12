@@ -4,8 +4,7 @@ function FullReduce(fullMoney, reducedMoney, totalMoney) {
 }
 
 FullReduce.prototype.getPromotionMoney = function() {
-    this.promotionMoney = (this.totalMoney * (1 - this.discountRate)).toFixed(2);
-    return this.promotionMoney;
+    return Math.floor(this.totalMoney / this.fullMoney) * this.reducedMoney;
 };
 
 module.exports = FullReduce;
