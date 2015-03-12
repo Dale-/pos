@@ -3,13 +3,6 @@ var Cashier = require('./model/cashier');
 
 run();
 
-function printInventory(collections, strategyType) {
-
-  var cart = new Cart();
-  cart.cartItems = Cashier.transfer(collections);
-  console.log(cart.toString(strategyType));
-}
-
 function run() {
     var collections = [
         { 'ITEM000000' : 20 },
@@ -21,4 +14,11 @@ function run() {
     ];
     var strategyType = '4';
     printInventory(collections, strategyType);
+}
+
+function printInventory(collections, strategyType) {
+
+    var cart = new Cart();
+    Cashier.transfer(collections, cart);
+    console.log(cart.toString(strategyType));
 }
