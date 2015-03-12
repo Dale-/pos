@@ -1,8 +1,8 @@
 var _ = require('lodash');
 var Discount = require('./discount');
 
-function WholeSupermarket(discountRate, totalMoney) {
-    Discount.call(this,discountRate, totalMoney);
+function WholeSupermarket(discountRate, cartItems) {
+    Discount.call(this,discountRate, cartItems);
 }
 
 WholeSupermarket.prototype = Object.create(Discount.prototype);

@@ -1,8 +1,8 @@
 var _ = require('lodash');
 var Discount = require('./discount');
 
-function Item(discountRate, totalMoney, itemName) {
-    Discount.call(this,discountRate, totalMoney);
+function Item(discountRate, cartItems, itemName) {
+    Discount.call(this,discountRate, cartItems);
     this.itemName = itemName;
 }
 

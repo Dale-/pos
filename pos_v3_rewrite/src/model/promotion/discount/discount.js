@@ -1,6 +1,6 @@
-function Discount(discountRate, totalMoney) {
+function Discount(discountRate, cartItems) {
     this.discountRate = discountRate;
-    this.totalMoney = totalMoney;
+    this.cartItems = cartItems;
 }
 
 Discount.prototype.getPromotionMoney = function() {
