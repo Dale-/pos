@@ -11,8 +11,12 @@ function Brand(discountRate, cartItems, brand) {
 Brand.prototype = Object.create(Discount.prototype);
 Brand.prototype.constructor = Brand;
 
-Brand.prototype.buildPromotionInfo = function() {
+Brand.prototype.calculateSubtotal = function() {
 
+};
+
+Brand.prototype.buildPromotionInfo = function() {
+    return '名称：' + brand + '品牌打折，金额：' + this.promotionMoney + '元\n';
 };
 
 module.exports = Brand;
