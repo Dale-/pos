@@ -12,3 +12,11 @@ Cart.prototype.addCartItem = function(tag) {
     this.cartItems.push(new CartItem(item, tag[key]));
     return this.cartItems;
 };
+
+Cart.prototype.buildListInfo = function() {
+    var listInfo = '';
+    _.forEach(this.cartItems, function(cartItem) {
+        listInfo += cartItem.buildItemInfo();
+    });
+    return listInfo;
+};

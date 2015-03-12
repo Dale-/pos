@@ -21,9 +21,8 @@ Cart.prototype.addCartItem = function(tag) {
 };
 
 Cart.prototype.getListInfo = function() {
-    var cartItems = this.cartItems;
     var listText = '';
-    _.forEach(cartItems, function(cartItem) {
+    _.forEach(this.cartItems, function(cartItem) {
       listText += cartItem.toListText();
     });
     return listText;
