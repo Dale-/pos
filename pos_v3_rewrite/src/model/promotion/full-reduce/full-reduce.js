@@ -1,5 +1,6 @@
 function FullReduce(fullMoney, reducedMoney, totalMoney) {
     this.fullMoney = fullMoney;
+    this.totalMoney = totalMoney;
     this.reducedMoney = reducedMoney;
 }
 
