@@ -8,17 +8,16 @@ var Promotion = require('./promotion/promotion');
 var UpToTopReduce = require('./promotion/up-to-top-reduce');
 
 function Cart(strategy) {
-    this.cartItems = [];
-    this.promotionInfo = '';
-    this.strategy = strategy;
+  this.cartItems = [];
+  this.promotionInfo = '';
+  this.strategy = strategy;
 }
 
 Cart.prototype.addCartItem = function(tag) {
-    for(var key in tag) {
-      var item = _.find(Item.all(), {barcode: key});
-      this.cartItems.push(new CartItem(item, tag[key]));
-    }
-    return this.cartItems;
+  var key = _.keys(tag)[0];
+  var item = _.find(Item.all(), {barcode: key});
+  this.cartItems.push(new CartItem(item, tag[key]));
+  return this.cartItems;
 };
 
 Cart.prototype.getListInfo = function() {
