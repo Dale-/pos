@@ -20,3 +20,19 @@ Promotion.prototype.getCartItem = function() {
     });
     return cartItem;
 };
+
+Promotion.prototype.getTotalMoney = function(cartItems) {
+    return _.reduce(cartItems, function(totalMoney, cartItem) {
+        return totalMoney + cartItem.getSubTotal();
+    });
+};
+
+Promotion.prototype.removeCartItem = function() {
+    var newCartItems = [];
+    _.forEach(this.cartItems, function(cartItem) {
+        if(cartItem.getName() !== this.itemName) {
+            newCartItems.push(cartItem);
+        }
+    });
+    return newCartItems;
+};
