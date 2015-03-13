@@ -9,6 +9,10 @@ function Item(fullMoney, reducedMoney, totalMoney, itemName, cartItems) {
 Item.prototype = Object.create(FullReduce.prototype);
 Item.prototype.constructor = Item;
 
+Item.prototype.getBePromotionMoney = function() {
+    this.bePromotionMoney = this.getCartItem().getSubTotal();
+};
+
 Item.prototype.buildPromotionInfo = function() {
     return '名称：' + this.brand +
            '满' + this.fullMoney + '减' + this.reducedMoney + '，' +
