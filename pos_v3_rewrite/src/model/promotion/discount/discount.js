@@ -10,7 +10,7 @@ Discount.prototype.constructor = Discount;
 
 Discount.prototype.getPromotionMoney = function() {
     this.getBePromotionMoney();
-    return (this.totalMoney * (1 - this.discountRate)).toFixed(2);
+    return (this.bePromotionMoney * (1 - this.discountRate)).toFixed(2);
 };
 
 module.exports = Discount;

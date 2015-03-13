@@ -4,14 +4,14 @@ var Discount = require('./discount');
 function Item(discountRate, cartItems, itemName) {
     Discount.call(this,discountRate, cartItems);
     this.itemName = itemName;
-    this.totalMoney = 0;
+    this.bePromotionMoney = 0;
 }
 
 Item.prototype = Object.create(Discount.prototype);
 Item.prototype.constructor = Item;
 
 Item.prototype.getBePromotionMoney = function() {
-    this.totalMoney = this.getCartItem().getSubTotal();
+    this.bePromotionMoney = this.getCartItem().getSubTotal();
 };
 
 Item.prototype.buildPromotionInfo = function() {

@@ -4,13 +4,14 @@ var Discount = require('./discount');
 function WholeSupermarket(discountRate, cartItems, itemName) {
     Discount.call(this,discountRate, cartItems);
     this.itemName = itemName;
+    this.bePromotionMoney = 0;
 }
 
 WholeSupermarket.prototype = Object.create(Discount.prototype);
 WholeSupermarket.prototype.constructor = WholeSupermarket;
 
 WholeSupermarket.prototype.getBePromotionMoney = function() {
-    this.totalMoney = this.getTotalMoney(this.removeCartItem());
+    this.bePromotionMoney = this.getTotalMoney(this.removeCartItem());
 };
 
 WholeSupermarket.prototype.buildPromotionInfo = function() {
