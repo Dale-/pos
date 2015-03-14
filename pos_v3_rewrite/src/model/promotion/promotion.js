@@ -1,6 +1,4 @@
 var _ = require('lodash');
-//var Item = require('../../model/item');
-//var CartItem = require('../../model/cart-item');
 
 function Promotion(cartItems) {
     this.cartItems = cartItems;
@@ -19,10 +17,10 @@ Promotion.prototype.getBrandCartItems = function() {
 };
 
 Promotion.prototype.getCartItem = function() {
-    var cartItem =  _.find(this.cartItems ,function(cartItem) {
-        return cartItem.getName() === this.itemName;
+    var itemName = this.itemName;
+    return  _.find(this.cartItems ,function(cartItem) {
+        return cartItem.getName() === itemName;
     });
-    return cartItem;
 };
 
 Promotion.prototype.getTotalMoney = function(cartItems) {

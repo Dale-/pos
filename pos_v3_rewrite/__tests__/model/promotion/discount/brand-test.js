@@ -14,12 +14,13 @@ describe('Brand', function() {
     var Brand;
     var CartItem;
     var cartItems;
-    var promotion;
 
     beforeEach(function() {
+
         Item = require('../../../../src/model/item');
         CartItem = require('../../../../src/model/cart-item');
         Brand = require('../../../../src/model/promotion/discount/brand');
+
         cartItems = [new CartItem(Item.all()[0],20), new CartItem(Item.all()[1],25),
                      new CartItem(Item.all()[2],30), new CartItem(Item.all()[3],15),
                      new CartItem(Item.all()[5],20), new CartItem(Item.all()[6],20)];

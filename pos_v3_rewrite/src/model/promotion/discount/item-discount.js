@@ -1,21 +1,21 @@
 var _ = require('lodash');
 var Discount = require('./discount');
 
-function Item(discountRate, cartItems, itemName) {
+function ItemDiscount(discountRate, cartItems, itemName) {
     Discount.call(this,discountRate, cartItems);
     this.itemName = itemName;
     this.bePromotionMoney = 0;
 }
 
-Item.prototype = Object.create(Discount.prototype);
-Item.prototype.constructor = Item;
+ItemDiscount.prototype = Object.create(Discount.prototype);
+ItemDiscount.prototype.constructor = ItemDiscount;
 
-Item.prototype.getBePromotionMoney = function() {
+ItemDiscount.prototype.getBePromotionMoney = function() {
     this.bePromotionMoney = this.getCartItem().getSubTotal();
 };
 
-Item.prototype.buildPromotionInfo = function() {
+ItemDiscount.prototype.buildPromotionInfo = function() {
     return '名称：' + this.itemName + '单品打折，金额：' + this.getPromotionMoney() + '元\n';
 };
 
-module.exports = Item;
+module.exports = ItemDiscount;
