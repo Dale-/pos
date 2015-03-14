@@ -43,9 +43,16 @@ describe('Brand', function() {
     });
 
     describe('#getBePromotionMoney', function() {
-        it('should return need to promotioned Money', function() {
+        it('should return be assignment of bePromotionMoney', function() {
             var result = brand.getBePromotionMoney(brand.getTotalMoney());
             expect(result).toBe(160);
+        });
+    });
+
+    describe('#buildPromotionInfo', function() {
+        it('should return one string of promotion information', function() {
+            var result = brand.buildPromotionInfo();
+            expect(result).toBe('名称：可口可乐品牌打折，金额：16.00元\n');
         });
     });
 
