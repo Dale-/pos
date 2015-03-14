@@ -10,6 +10,7 @@ Promotion.prototype.getBrandCartItems = function() {
 
     _.forEach(this.cartItems ,function(cartItem) {
         if(cartItem.getBrand() === brand) {
+            cartItem.isBrandDiscount = true;
             brandCartItems.push(cartItem);
         }
     });
@@ -18,9 +19,11 @@ Promotion.prototype.getBrandCartItems = function() {
 
 Promotion.prototype.getCartItem = function() {
     var itemName = this.itemName;
-    return  _.find(this.cartItems ,function(cartItem) {
+    var newCartItem =  _.find(this.cartItems ,function(cartItem) {
         return cartItem.getName() === itemName;
     });
+    newCartItem.isItemDiscount = true;
+    return newCartItem;
 };
 
 Promotion.prototype.getTotalMoney = function(cartItems) {

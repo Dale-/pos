@@ -11,6 +11,8 @@ Discount.prototype.constructor = Discount;
 
 Discount.prototype.getPromotionMoney = function() {
     this.getBePromotionMoney();
+    //var promotionMoney = (this.bePromotionMoney * (1 - this.discountRate)).toFixed(2);
+    //strategy.promotionMoney += FLoat.parse(promotionMoney);
     return (this.bePromotionMoney * (1 - this.discountRate)).toFixed(2);
 };
 

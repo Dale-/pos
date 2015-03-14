@@ -1,9 +1,11 @@
 function CartItem(item, count) {
     this.item = item;
     this.count = count || 0;
-    this.subTotal = 0;
-    this.savingMoney = 0;
     this.payment = 0;
+    this.subTotal = 0;
+    this.brandPromotionedMoney = 0;
+    this.isBrandDiscount = false;
+    this.isItemDiscount = false;
 }
 
 CartItem.prototype.getPrice = function() {
