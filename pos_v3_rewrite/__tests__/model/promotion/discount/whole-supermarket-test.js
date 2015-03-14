@@ -4,7 +4,7 @@ jest.dontMock('../../../../src/model/cart-item');
 jest.dontMock('../../../../src/model/util/transfer');
 jest.dontMock('../../../../src/model/promotion/promotion');
 jest.dontMock('../../../../src/model/promotion/discount/discount');
-jest.dontMock('../../../../src/model/promotion/discount/whole-supermarket');
+jest.dontMock('../../../../src/model/promotion/discount/whole-supermarket-discount');
 
 describe('WholeSupermarket', function() {
 
@@ -12,19 +12,19 @@ describe('WholeSupermarket', function() {
     var CartItem;
     var cartItems;
     var wholeSupermarket;
-    var WholeSupermarket;
+    var WholeSupermarketDiscount;
 
     beforeEach(function() {
 
         Item = require('../../../../src/model/item');
         CartItem = require('../../../../src/model/cart-item');
-        WholeSupermarket = require('../../../../src/model/promotion/discount/whole-supermarket');
+        WholeSupermarketDiscount = require('../../../../src/model/promotion/discount/whole-supermarket-discount');
 
         cartItems = [new CartItem(Item.all()[0],20), new CartItem(Item.all()[1],25),
                      new CartItem(Item.all()[2],30), new CartItem(Item.all()[3],15),
                      new CartItem(Item.all()[5],20), new CartItem(Item.all()[6],20)];
 
-        wholeSupermarket = new WholeSupermarket(0.8, cartItems, '果粒橙');
+        wholeSupermarket = new WholeSupermarketDiscount(0.8, cartItems, '果粒橙');
     });
 
     describe('#numberTransferCharacter', function() {

@@ -20,3 +20,5 @@ Cart.prototype.buildListInfo = function() {
     });
     return listInfo;
 };
+
+module.exports = Cart;

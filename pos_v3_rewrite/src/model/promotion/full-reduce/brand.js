@@ -12,6 +12,7 @@ Brand.prototype.constructor = Brand;
 
 Brand.prototype.getBePromotionMoney = function() {
     this.bePromotionMoney = this.getTotalMoney(this.getBrandCartItems());
+    return this.bePromotionMoney;
 };
 
 Brand.prototype.buildPromotionInfo = function() {
