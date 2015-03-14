@@ -1,6 +1,6 @@
 function CartItem(item, count) {
     this.item = item;
-    this.count = count;
+    this.count = count || 0;
     this.subTotal = 0;
     this.savingMoney = 0;
 }
@@ -27,7 +27,8 @@ CartItem.prototype.getSubTotal = function() {
 
 CartItem.prototype.buildItemInfo = function() {
     return '名称：' + this.getName() + '，数量：' + this.count + this.getUnit() + '，' +
-           '单价：' + this.getPrice().toFixed(2) + '(元)，小计：'+ this.getSubTotal() +'(元)\n';
+           '单价：' + this.getPrice().toFixed(2) + '(元)，' +
+           '小计：'+ this.getSubTotal().toFixed(2) +'(元)\n';
 };
 
 

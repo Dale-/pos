@@ -4,6 +4,7 @@ var CartItem = require('./cart-item');
 
 function Cart() {
     this.cartItems = [];
+    this.stategy = null;
 }
 
 Cart.prototype.addCartItem = function(tag) {
