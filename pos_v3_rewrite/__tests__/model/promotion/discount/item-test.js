@@ -5,8 +5,6 @@ jest.dontMock('../../../../src/model/promotion/promotion');
 jest.dontMock('../../../../src/model/promotion/discount/discount');
 jest.dontMock('../../../../src/model/promotion/discount/item-discount');
 
-
-
 describe('Item', function() {
 
     var Item;
@@ -43,11 +41,11 @@ describe('Item', function() {
         });
     });
 
-    //describe('#buildPromotionInfo', function() {
-    //    it('should return one string of promotion information', function() {
-    //        var result = brand.buildPromotionInfo();
-    //        expect(result).toBe('名称：可口可乐品牌打折，金额：16.00元\n');
-    //    });
-    //});
+    describe('#buildPromotionInfo', function() {
+        it('should return one string of promotion information', function() {
+            var result = itemDiscount.buildPromotionInfo();
+            expect(result).toBe('名称：可口可乐350ml单品打折，金额：12.00元\n');
+        });
+    });
 
 });
