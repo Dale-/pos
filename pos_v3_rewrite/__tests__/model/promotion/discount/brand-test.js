@@ -39,7 +39,7 @@ describe('Brand', function() {
         it('should return totalMoney of cartItems', function() {
             var result = brand.getTotalMoney(brand.getBrandCartItems());
             console.log(result);
-            expect(result).toBe(160.00);
+            expect(result).toBe(160);
         });
     });
 

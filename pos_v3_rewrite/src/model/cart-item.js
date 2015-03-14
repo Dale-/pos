@@ -22,7 +22,7 @@ CartItem.prototype.getUnit = function() {
 };
 
 CartItem.prototype.getSubTotal = function() {
-    return (this.getPrice() * this.count).toFixed(2);
+    return this.getPrice() * this.count;
 };
 
 CartItem.prototype.buildItemInfo = function() {

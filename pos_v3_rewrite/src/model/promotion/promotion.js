@@ -26,6 +26,7 @@ Promotion.prototype.getCartItem = function() {
 };
 
 Promotion.prototype.getTotalMoney = function(cartItems) {
+
     return _.reduce(cartItems, function(totalMoney, cartItem) {
         return totalMoney + cartItem.getSubTotal();
     }, 0);
