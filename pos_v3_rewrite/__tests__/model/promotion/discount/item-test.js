@@ -36,20 +36,13 @@ describe('Item', function() {
         });
     });
 
-    //describe('#getTotalMoney', function() {
-    //    it('should return totalMoney of cartItems', function() {
-    //        var result = brand.getTotalMoney(brand.getBrandCartItems());
-    //        expect(result).toBe(160);
-    //    });
-    //});
-    //
-    //describe('#getBePromotionMoney', function() {
-    //    it('should return be assignment of bePromotionMoney', function() {
-    //        var result = brand.getBePromotionMoney(brand.getTotalMoney());
-    //        expect(result).toBe(160);
-    //    });
-    //});
-    //
+    describe('#getBePromotionMoney', function() {
+        it('should return be assignment of bePromotionMoney', function() {
+            var result = itemDiscount.getBePromotionMoney();
+            expect(result).toBe(60);
+        });
+    });
+
     //describe('#buildPromotionInfo', function() {
     //    it('should return one string of promotion information', function() {
     //        var result = brand.buildPromotionInfo();

@@ -12,6 +12,7 @@ ItemDiscount.prototype.constructor = ItemDiscount;
 
 ItemDiscount.prototype.getBePromotionMoney = function() {
     this.bePromotionMoney = this.getCartItem().getSubTotal();
+    return this.bePromotionMoney;
 };
 
 ItemDiscount.prototype.buildPromotionInfo = function() {
