@@ -48,11 +48,11 @@ describe('WholeSupermarket', function() {
         });
     });
 
-    //describe('#buildPromotionInfo', function() {
-    //    it('should return one string of promotion information', function() {
-    //        var result = itemDiscount.buildPromotionInfo();
-    //        expect(result).toBe('名称：可口可乐350ml单品打折，金额：12.00元\n');
-    //    });
-    //});
+    describe('#buildPromotionInfo', function() {
+        it('should return one string of promotion information', function() {
+            var result = wholeSupermarket.buildPromotionInfo();
+            expect(result).toBe('名称：八折，金额：118.00元\n');
+        });
+    });
 
 });
