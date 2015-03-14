@@ -13,6 +13,7 @@ WholeSupermarket.prototype.constructor = WholeSupermarket;
 
 WholeSupermarket.prototype.getBePromotionMoney = function() {
     this.bePromotionMoney = this.getTotalMoney(this.removeCartItem());
+    return this.bePromotionMoney;
 };
 
 WholeSupermarket.prototype.buildPromotionInfo = function() {

@@ -41,13 +41,13 @@ describe('WholeSupermarket', function() {
        });
     });
 
-    //describe('#getBePromotionMoney', function() {
-    //    it('should return be assignment of bePromotionMoney', function() {
-    //        var result = itemDiscount.getBePromotionMoney();
-    //        expect(result).toBe(60);
-    //    });
-    //});
-    //
+    describe('#getBePromotionMoney', function() {
+        it('should return be assignment of bePromotionMoney', function() {
+            var result = wholeSupermarket.getBePromotionMoney();
+            expect(result).toBe(590);
+        });
+    });
+
     //describe('#buildPromotionInfo', function() {
     //    it('should return one string of promotion information', function() {
     //        var result = itemDiscount.buildPromotionInfo();
