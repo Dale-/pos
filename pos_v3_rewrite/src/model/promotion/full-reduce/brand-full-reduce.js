@@ -1,24 +1,24 @@
 var _ = require('lodash');
 var FullReduce = require('./full-reduce');
 
-function Brand(fullMoney, reducedMoney, cartItems, brand) {
+function BrandFullReduce(fullMoney, reducedMoney, cartItems, brand) {
     FullReduce.call(this, fullMoney, reducedMoney, cartItems);
     this.brand = brand;
     this.bePromotionMoney = 0;
 }
 
-Brand.prototype = Object.create(FullReduce.prototype);
-Brand.prototype.constructor = Brand;
+BrandFullReduce.prototype = Object.create(FullReduce.prototype);
+BrandFullReduce.prototype.constructor = BrandFullReduce;
 
-Brand.prototype.getBePromotionMoney = function() {
+BrandFullReduce.prototype.getBePromotionMoney = function() {
     this.bePromotionMoney = this.getTotalMoney(this.getBrandCartItems());
     return this.bePromotionMoney;
 };
 
-Brand.prototype.buildPromotionInfo = function() {
+BrandFullReduce.prototype.buildPromotionInfo = function() {
     return '名称：' + this.brand +
            '品牌满' + this.fullMoney + '减' + this.reducedMoney + '，' +
            '金额：' + this.getPromotionMoney() + '元\n';
 };
 
-module.exports = Brand;
+module.exports = BrandFullReduce;

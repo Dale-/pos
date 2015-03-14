@@ -3,6 +3,7 @@ function CartItem(item, count) {
     this.count = count || 0;
     this.subTotal = 0;
     this.savingMoney = 0;
+    this.payment = 0;
 }
 
 CartItem.prototype.getPrice = function() {
