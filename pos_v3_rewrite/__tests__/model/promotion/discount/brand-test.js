@@ -38,7 +38,13 @@ describe('Brand', function() {
     describe('#getTotalMoney', function() {
         it('should return totalMoney of cartItems', function() {
             var result = brand.getTotalMoney(brand.getBrandCartItems());
-            console.log(result);
+            expect(result).toBe(160);
+        });
+    });
+
+    describe('#getBePromotionMoney', function() {
+        it('should return need to promotioned Money', function() {
+            var result = brand.getBePromotionMoney(brand.getTotalMoney());
             expect(result).toBe(160);
         });
     });
