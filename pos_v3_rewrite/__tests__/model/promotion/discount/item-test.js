@@ -20,8 +20,8 @@ describe('Item', function() {
         ItemDiscount = require('../../../../src/model/promotion/discount/item-discount');
 
         cartItems = [new CartItem(Item.all()[0],20), new CartItem(Item.all()[1],25),
-            new CartItem(Item.all()[2],30), new CartItem(Item.all()[3],15),
-            new CartItem(Item.all()[5],20), new CartItem(Item.all()[6],20)];
+                     new CartItem(Item.all()[2],30), new CartItem(Item.all()[3],15),
+                     new CartItem(Item.all()[5],20), new CartItem(Item.all()[6],20)];
 
         itemDiscount = new ItemDiscount(0.8, cartItems, '可口可乐350ml');
     });

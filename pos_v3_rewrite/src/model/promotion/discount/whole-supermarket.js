@@ -20,8 +20,4 @@ WholeSupermarket.prototype.buildPromotionInfo = function() {
            '折，金额：' + this.getPromotionMoney() + '元\n';
 };
 
-WholeSupermarket.prototype.numberTransferCharacter = function() {
-
-};
-
 module.exports = WholeSupermarket;
