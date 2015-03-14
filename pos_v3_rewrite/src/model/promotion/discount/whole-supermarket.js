@@ -5,6 +5,7 @@ function WholeSupermarket(discountRate, cartItems, itemName) {
     Discount.call(this,discountRate, cartItems);
     this.itemName = itemName;
     this.bePromotionMoney = 0;
+    this.characterDiscount = '';
 }
 
 WholeSupermarket.prototype = Object.create(Discount.prototype);
@@ -15,7 +16,12 @@ WholeSupermarket.prototype.getBePromotionMoney = function() {
 };
 
 WholeSupermarket.prototype.buildPromotionInfo = function() {
-    return '名称：' + this.discountRate * 10 + '折，金额：' + this.getPromotionMoney() + '元\n';
+    return '名称：' + this.numberTransferCharacter(this.discountRate * 100) +
+           '折，金额：' + this.getPromotionMoney() + '元\n';
+};
+
+WholeSupermarket.prototype.numberTransferCharacter = function() {
+
 };
 
 module.exports = WholeSupermarket;
