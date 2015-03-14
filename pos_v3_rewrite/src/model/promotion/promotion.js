@@ -1,4 +1,6 @@
 var _ = require('lodash');
+//var Item = require('../../model/item');
+//var CartItem = require('../../model/cart-item');
 
 function Promotion(cartItems) {
     this.cartItems = cartItems;
@@ -6,8 +8,10 @@ function Promotion(cartItems) {
 
 Promotion.prototype.getBrandCartItems = function() {
     var brandCartItems = [];
+    var brand = this.brand;
+
     _.forEach(this.cartItems ,function(cartItem) {
-        if(cartItem.getBrand() === this.brand) {
+        if(cartItem.getBrand() === brand) {
             brandCartItems.push(cartItem);
         }
     });
@@ -36,3 +40,5 @@ Promotion.prototype.removeCartItem = function() {
     });
     return newCartItems;
 };
+
+module.exports = Promotion;
