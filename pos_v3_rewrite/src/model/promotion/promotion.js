@@ -32,8 +32,9 @@ Promotion.prototype.getTotalMoney = function(cartItems) {
 
 Promotion.prototype.removeCartItem = function() {
     var newCartItems = [];
+    var itemName = this.itemName;
     _.forEach(this.cartItems, function(cartItem) {
-        if(cartItem.getName() !== this.itemName) {
+        if(cartItem.getName() !== itemName) {
             newCartItems.push(cartItem);
         }
     });

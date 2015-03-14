@@ -34,6 +34,13 @@ describe('WholeSupermarket', function() {
         });
     });
 
+    describe('#removeCartItem', function() {
+       it('should be return cartItems that had removed appointed cartItem', function() {
+           var result =  wholeSupermarket.removeCartItem();
+           expect(result.length).toBe(5);
+       });
+    });
+
     //describe('#getBePromotionMoney', function() {
     //    it('should return be assignment of bePromotionMoney', function() {
     //        var result = itemDiscount.getBePromotionMoney();
