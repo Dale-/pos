@@ -35,3 +35,5 @@ Transfer.numberTransferCharacter = function(number) {
             break;
     }
 };
+
+module.exports = Transfer;
