@@ -1,7 +1,6 @@
 var Promotion = require('../promotion');
 
-function FullReduce(fullMoney, reducedMoney, cartItems) {
-    Promotion.call(this, cartItems);
+function FullReduce(fullMoney, reducedMoney) {
     this.fullMoney = fullMoney;
     this.reducedMoney = reducedMoney;
 }

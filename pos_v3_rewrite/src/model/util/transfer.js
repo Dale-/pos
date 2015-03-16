@@ -36,4 +36,21 @@ Transfer.numberTransferCharacter = function(number) {
     }
 };
 
+Transfer.numberTransferEnglish = function(number) {
+    switch (number) {
+        case '1':
+            return 'One';
+            break;
+        case '2':
+            return 'Two';
+            break;
+        case '3':
+            return 'Three';
+            break;
+        case '4':
+            return 'Four';
+            break;
+    }
+};
+
 module.exports = Transfer;

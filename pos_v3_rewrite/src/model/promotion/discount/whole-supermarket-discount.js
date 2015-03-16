@@ -1,18 +1,17 @@
 var _ = require('lodash');
 var Discount = require('./discount');
 
-function WholeSupermarketDiscount(discountRate, cartItems, itemName) {
-    Discount.call(this,discountRate, cartItems);
+function WholeSupermarketDiscount(discountRate, bePromotionMoney, itemName) {
+    Discount.call(this,discountRate);
     this.itemName = itemName;
-    this.bePromotionMoney = 0;
-    this.characterDiscount = '';
+    //this.characterDiscount = '';
+    this.bePromotionMoney = bePromotionMoney;
 }
 
 WholeSupermarketDiscount.prototype = Object.create(Discount.prototype);
 WholeSupermarketDiscount.prototype.constructor = WholeSupermarketDiscount;
 
 WholeSupermarketDiscount.prototype.getBePromotionMoney = function() {
-    this.bePromotionMoney = this.getTotalMoney(this.removeCartItem());
     return this.bePromotionMoney;
 };
 

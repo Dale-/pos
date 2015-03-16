@@ -11,12 +11,17 @@ BrandDiscount.prototype = Object.create(Discount.prototype);
 BrandDiscount.prototype.constructor = BrandDiscount;
 
 BrandDiscount.prototype.getBePromotionMoney = function() {
-    this.bePromotionMoney = this.getTotalMoney(this.getBrandCartItems());
+    this.bePromotionMoney = this.getTotalMoney(this.cartItems);
     return this.bePromotionMoney;
 };
 
 BrandDiscount.prototype.buildPromotionInfo = function() {
-    return '名称：' + this.brand + '品牌打折，金额：' + this.getPromotionMoney() + '元\n';
+    if(this.cartItems) {
+        return '名称：' + this.brand + '品牌打折，金额：' + this.getPromotionMoney() + '元\n';
+    } else {
+        return '';
+    }
+
 };
 
 module.exports = BrandDiscount;

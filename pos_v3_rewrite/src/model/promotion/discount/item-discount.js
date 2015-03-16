@@ -1,8 +1,9 @@
 var _ = require('lodash');
 var Discount = require('./discount');
 
-function ItemDiscount(discountRate, cartItems, itemName) {
-    Discount.call(this,discountRate, cartItems);
+function ItemDiscount(discountRate, cartItem, itemName) {
+    Discount.call(this,discountRate);
+    this.cartItem = cartItem;
     this.itemName = itemName;
     this.bePromotionMoney = 0;
 }
@@ -11,7 +12,7 @@ ItemDiscount.prototype = Object.create(Discount.prototype);
 ItemDiscount.prototype.constructor = ItemDiscount;
 
 ItemDiscount.prototype.getBePromotionMoney = function() {
-    this.bePromotionMoney = this.getCartItem().getSubTotal();
+    this.bePromotionMoney = (this.cartItem).getSubTotal();
     return this.bePromotionMoney;
 };
 

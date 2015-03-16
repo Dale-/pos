@@ -1,30 +1,29 @@
 var _ = require('lodash');
 
-function Promotion(cartItems) {
-    this.cartItems = cartItems;
+function Promotion() {
 }
 
-Promotion.prototype.getBrandCartItems = function() {
-    var brandCartItems = [];
-    var brand = this.brand;
+//Promotion.prototype.getBrandCartItems = function() {
+//    var brandCartItems = [];
+//    var brand = this.brand;
+//
+//    _.forEach(this.cartItems ,function(cartItem) {
+//        if(cartItem.getBrand() === brand) {
+//            cartItem.isBrandDiscount = true;
+//            brandCartItems.push(cartItem);
+//        }
+//    });
+//    return brandCartItems;
+//};
 
-    _.forEach(this.cartItems ,function(cartItem) {
-        if(cartItem.getBrand() === brand) {
-            cartItem.isBrandDiscount = true;
-            brandCartItems.push(cartItem);
-        }
-    });
-    return brandCartItems;
-};
-
-Promotion.prototype.getCartItem = function() {
-    var itemName = this.itemName;
-    var newCartItem =  _.find(this.cartItems ,function(cartItem) {
-        return cartItem.getName() === itemName;
-    });
-    newCartItem.isItemDiscount = true;
-    return newCartItem;
-};
+//Promotion.prototype.getCartItem = function() {
+//    var itemName = this.itemName;
+//    var newCartItem =  _.find(this.cartItems ,function(cartItem) {
+//        return cartItem.getName() === itemName;
+//    });
+//    newCartItem.isItemDiscount = true;
+//    return newCartItem;
+//};
 
 Promotion.prototype.getTotalMoney = function(cartItems) {
 
@@ -33,15 +32,15 @@ Promotion.prototype.getTotalMoney = function(cartItems) {
     }, 0);
 };
 
-Promotion.prototype.removeCartItem = function() {
-    var newCartItems = [];
-    var itemName = this.itemName;
-    _.forEach(this.cartItems, function(cartItem) {
-        if(cartItem.getName() !== itemName) {
-            newCartItems.push(cartItem);
-        }
-    });
-    return newCartItems;
-};
+//Promotion.prototype.removeCartItem = function() {
+//    var newCartItems = [];
+//    var itemName = this.itemName;
+//    _.forEach(this.cartItems, function(cartItem) {
+//        if(cartItem.getName() !== itemName) {
+//            newCartItems.push(cartItem);
+//        }
+//    });
+//    return newCartItems;
+//};
 
 module.exports = Promotion;

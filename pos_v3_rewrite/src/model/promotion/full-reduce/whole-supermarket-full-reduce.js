@@ -1,18 +1,17 @@
 var _ = require('lodash');
 var FullReduce = require('./full-reduce');
 
-function WholeSupermarketFullReduce(fullMoney, reducedMoney, cartItems, itemName) {
-    FullReduce.call(this, fullMoney, reducedMoney, cartItems);
-    this.itemName = itemName;
-    this.bePromotionMoney = 0;
+function WholeSupermarketFullReduce(fullMoney, reducedMoney, bePromotionMoney) {
+    FullReduce.call(this, fullMoney, reducedMoney);
     this.characterDiscount = '';
+    this.bePromotionMoney = bePromotionMoney;
+
 }
 
 WholeSupermarketFullReduce.prototype = Object.create(FullReduce.prototype);
 WholeSupermarketFullReduce.prototype.constructor = WholeSupermarketFullReduce;
 
 WholeSupermarketFullReduce.prototype.getBePromotionMoney = function() {
-    this.bePromotionMoney = this.getTotalMoney(this.removeCartItem());
     return this.bePromotionMoney;
 };
 

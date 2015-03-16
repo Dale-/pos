@@ -1,8 +1,7 @@
 var Promotion = require('../promotion');
 var Transfer = require('../../util/transfer');
 
-function Discount(discountRate, cartItems) {
-    Promotion.call(this, cartItems);
+function Discount(discountRate) {
     this.discountRate = discountRate;
 }
 
@@ -17,9 +16,8 @@ Discount.prototype.getPromotionMoney = function() {
 };
 
 Discount.prototype.numberTransferCharacter = function(number) {
-    this.characterDiscount =  Transfer.numberTransferCharacter(Math.floor(number/10)) +
-                              Transfer.numberTransferCharacter(number%10);
-    return this.characterDiscount;
+    return  Transfer.numberTransferCharacter(Math.floor(number / 10)) +
+            Transfer.numberTransferCharacter(number % 10);
 };
 
 module.exports = Discount;
